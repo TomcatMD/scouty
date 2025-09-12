@@ -6,7 +6,7 @@ module Scouty
   module Scrapers
     class TestNoFluffJobs < Minitest::Test
       def scraper
-        @scraper ||= NoFluffJobs.new(params: { "category" => ["backend"] })
+        @scraper ||= NoFluffJobs.new(params: { "categories" => ["backend"] })
       end
 
       def test_scrape
@@ -92,6 +92,38 @@ module Scouty
           end
 
         assert_match(/^the server responded with status 500/, err.message)
+      end
+
+      def test_without_categories
+        scraper = NoFluffJobs.new(params: {})
+
+        stub_request(:post, "https://nofluffjobs.com/api/search/posting")
+          .with(
+            query: {
+              "pageTo" => 1,
+              "salaryCurrency" => "EUR",
+              "salaryPeriod" => "year"
+            },
+            headers: {
+              "Content-Type" => "application/infiniteSearch+json"
+            },
+            body: { "criteriaSearch" => {} }
+          )
+          .to_return(
+            body: JSON.generate(
+              {
+                "postings" => [
+                  { "url" => "example" }
+                ],
+                "totalPages" => 1
+              }
+            )
+          )
+
+        urls = []
+        scraper.scrape { |u| urls << u }
+
+        assert_equal ["https://nofluffjobs.com/job/example"], urls
       end
     end
   end

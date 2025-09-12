@@ -6,10 +6,10 @@ module Scouty
       BASE_URL = "https://nofluffjobs.com/job/"
       SEARCH_API_URL = "https://nofluffjobs.com/api/search/posting"
 
-      attr_reader :category
+      attr_reader :categories
 
       def initialize(params:)
-        @category = params.fetch("category")
+        @categories = params["categories"]
       end
 
       def scrape(&block)
@@ -53,14 +53,12 @@ module Scouty
           "salaryPeriod" => "year"
         }
 
-        body = {
-          "criteriaSearch" => { "category" => category }
-        }
+        criteria = categories.nil? ? {} : { "category" => categories }
 
         response =
           faraday.post do |r|
             r.params = params
-            r.body = JSON.generate(body)
+            r.body = JSON.generate({ "criteriaSearch" => criteria })
           end
 
         response.body

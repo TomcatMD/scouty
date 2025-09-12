@@ -17,7 +17,7 @@ module Scouty
         when "list"
           StaticList.new(params:)
         when "justjoin.it"
-          JustJoinIT.new
+          JustJoinIT.new(params:)
         when "nofluffjobs.com"
           NoFluffJobs.new(params:)
         when "remoteok.com"

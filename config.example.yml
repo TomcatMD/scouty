@@ -14,28 +14,54 @@
 scrapers:
 
   # JustJoin.IT
-  # Fetches job postings from https://justjoin.it. No additional filters or
-  # configuration options are currently supported.
+  # Fetches job postings from https://justjoin.it. Customize `category` for
+  # the required job categories or comment it completely.
   - source: justjoin.it
+    categories:
+      # - javascript
+      # - html
+      # - php
+      - ruby
+      # - python
+      # - java
+      # - dotnet
+      # - scala
+      # - c
+      # - mobile
+      # - testing
+      # - devops
+      # - admin
+      # - ui_ux
+      # - pm
+      # - game
+      # - analytics
+      # - security
+      # - data
+      # - go
+      # - support
+      # - erp
+      # - architecture
+      # - other
+      # - ai_ml
 
   # NoFluffJobs
   # Fetches job postings from https://nofluffjobs.com. Customize `category` for
-  # job categories.
+  # the required job categories or comment it completely.
   - source: nofluffjobs.com
-    category:
-      - architecture
-      - backend
-      - frontend
-      - fullstack
-      - game-dev
+    categories:
       # - artificial-intelligence
       # - sys-administrator
       # - business-analyst
+      # - architecture
+      - backend
       # - data
       # - ux
       # - devops
       # - erp
       # - embedded
+      # - frontend
+      - fullstack
+      # - game-dev
       # - mobile
       # - project-manager
       # - security

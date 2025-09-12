@@ -6,19 +6,56 @@ module Scouty
       BASE_URL = "https://justjoin.it/job-offer/"
       CURSOR_API_URL = "https://api.justjoin.it/v2/user-panel/offers/by-cursor"
 
+      CATEGORY_CODES = {
+        "javascript" => 1,
+        "html" => 2,
+        "php" => 3,
+        "ruby" => 4,
+        "python" => 5,
+        "java" => 6,
+        "dotnet" => 7,
+        "scala" => 8,
+        "c" => 9,
+        "mobile" => 10,
+        "testing" => 11,
+        "devops" => 12,
+        "admin" => 13,
+        "ui_ux" => 14,
+        "pm" => 15,
+        "game" => 16,
+        "analytics" => 17,
+        "security" => 18,
+        "data" => 19,
+        "go" => 20,
+        "support" => 21,
+        "erp" => 22,
+        "architecture" => 23,
+        "other" => 24,
+        "ai_ml" => 25
+      }.freeze
+
+      def self.fetch_category_code(category) = CATEGORY_CODES.fetch(category)
+
+      attr_reader :categories
+
+      def initialize(params:)
+        @categories = params["categories"]
+        @job_offers_query = build_job_offers_query
+      end
+
       def scrape(&block)
         cursor = nil
 
         loop do
-          body = Retry.run { faraday.get(nil, from: cursor).body }
+          page = Retry.run { fetch_job_offers_page(cursor:) }
 
           slugs =
-            body
+            page
             .fetch("data")
             .map { |i| i.fetch("slug") }
 
           cursor =
-            body
+            page
             .fetch("meta")
             .fetch("next")
             .fetch("cursor")
@@ -30,6 +67,18 @@ module Scouty
       end
 
       private
+
+      attr_reader :job_offers_query
+
+      def build_job_offers_query
+        return {} if categories.nil?
+
+        { categories: categories.map { |i| self.class.fetch_category_code(i) } }
+      end
+
+      def fetch_job_offers_page(cursor:)
+        faraday.get(nil, job_offers_query.merge(from: cursor)).body
+      end
 
       def faraday
         @faraday ||=
