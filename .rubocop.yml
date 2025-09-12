@@ -23,3 +23,7 @@ Metrics/MethodLength:
 Metrics/AbcSize:
   Exclude:
     - 'test/**/*'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*'
