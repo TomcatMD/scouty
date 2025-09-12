@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "optparse"
+require_relative "../lib/scouty"
+
+skip_scrape = false
+config = nil
+
+options = OptionParser.new do |opts|
+  opts.banner = "Usage: bin/scouty [options]"
+
+  opts.separator ""
+  opts.separator "Options:"
+
+  opts.on(
+    "--skip-scrape",
+    "Skip scraping before running analysis."
+  ) do
+    skip_scrape = true
+  end
+
+  opts.on(
+    "--config CONFIG_FILE",
+    "Path to the configuration file. Default is config.yml."
+  ) do |v|
+    config = Scouty::Config.from_file(v)
+  end
+
+  opts.separator ""
+  opts.separator "Other options:"
+
+  opts.on_tail("-h", "--help", "Display this help message and exit.") do
+    puts opts
+    exit
+  end
+
+  opts.on_tail("--version", "Display the Scouty version and exit.") do
+    puts Scouty::VERSION
+    exit
+  end
+end
+
+begin
+  options.parse!(ARGV)
+rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
+  warn "Error: #{e.message}"
+  warn "Use --help to see available options."
+  exit 1
+end
+
+Scouty::App.new(config:).tap do |app|
+  app.scrape unless skip_scrape
+  app.review
+end

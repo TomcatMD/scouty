@@ -1,0 +1,11 @@
+config.yml
+/.bundle/
+/.yardoc
+/_yardoc/
+/coverage/
+/data/*
+!/data/.gitkeep
+/doc/
+/pkg/
+/spec/reports/
+/tmp/

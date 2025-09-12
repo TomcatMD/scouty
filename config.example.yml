@@ -1,0 +1,94 @@
+# Scouty Configuration File
+#
+# Configures the Scouty application. By default, `bin/scouty` loads `config.yml`
+# from the current directory. Use the `--config` flag to specify a different
+# file:
+#
+#   bin/scouty --config example.yml
+#
+
+# Scrapers
+# Defines sources for collecting job vacancies. Each source is predefined and
+# can be disabled by commenting out its entry. Details for each source are
+# below.
+scrapers:
+
+  # JustJoin.IT
+  # Fetches job postings from https://justjoin.it. No additional filters or
+  # configuration options are currently supported.
+  - source: justjoin.it
+
+  # NoFluffJobs
+  # Fetches job postings from https://nofluffjobs.com. Customize `category` for
+  # job categories.
+  - source: nofluffjobs.com
+    category:
+      - architecture
+      - backend
+      - frontend
+      - fullstack
+      - game-dev
+      # - artificial-intelligence
+      # - sys-administrator
+      # - business-analyst
+      # - data
+      # - ux
+      # - devops
+      # - erp
+      # - embedded
+      # - mobile
+      # - project-manager
+      # - security
+      # - support
+      # - testing
+      # - other
+
+  # remoteOK
+  # Fetches recent job postings from https://remoteok.com's feed API. Only the
+  # latest postings are available; run frequently to capture new vacancies.
+  - source: remoteok.com
+
+  # Static List
+  # Loads job postings from a fixed list of URLs. URLs must point to static,
+  # web-accessible job pages. Avoid CAPTCHAs or dynamic content (e.g., SPAs).
+  # - source: list
+  #   list:
+  #     - https://example.com/jobs/ruby-developer
+  #     - https://example.com/jobs/rails-developer
+
+
+# LM Studio
+# Configures access to a running LM Studio instance. Can be potentially
+# compatible with OpenAI API–like providers (e.g., https://ollama.com), but it
+# was not tested.
+lm_studio:
+  url: "http://127.0.0.1:1234"
+  model: "openai/gpt-oss-20b"
+
+
+# Webcache
+# Specifies the directory for storing scraped pages, acting as a cache to reduce
+# repeated requests for previously accessed job postings.
+webcache:
+  dir: data/webcache/
+
+
+# Registry
+# Defines the SQLite database file for storing job data in the `jobs` table.
+registry:
+  file: data/jobs.db
+
+
+# Profile
+# Describes your professional background. Provide a clear, honest summary of
+# skills, experience, and preferences for better results. Format is flexible,
+# but clarity improves matching accuracy.
+#
+# Note: The following is an example. Feel free to use structured markdown with
+# detailed descriptions for improved matching.
+profile: |
+  * Backend developer with experience in Ruby and Rails.
+  * Seeking remote roles in tech startups or innovative product-focused companies.
+  * Target compensation: competitive market rate for senior-level positions.
+  * Fluent in English.
+  * Open to full-time or contract opportunities.

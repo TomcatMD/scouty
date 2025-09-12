@@ -1,0 +1,114 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://127.0.0.1:1234/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"openai/gpt-oss-20b","n":1,"messages":[{"role":"developer","content":"You
+        are my personal assistant for reviewing job postings and evaluating their
+        relevance to my profile.\n\nFor each provided job posting (which may come
+        as raw, unprocessed data from job boards and could be incomplete or messy),
+        do the following:\n\n1. Analyze the content and assess how well it matches
+        my professional background, preferences, and requirements.\n2. Provide a relevance
+        score from **0.0 (not relevant at all or missing data)** to **5.0 (perfect
+        match)**.\n3. Give a clear, concise explanation for the assigned score.\n\nIf
+        the posting is broken, incomplete, or lacks enough data to evaluate, assign
+        a **score of 0.0** and explain what is missing.\n\n---\n\n## My Professional
+        Profile\n\nI like Ruby\n\n\n---\n\n## Output Format\n\nReturn the analysis
+        as a JSON object in the following structure:\n\n{\n  \"company\": \"<detected
+        company name>\",\n  \"position\": \"<detected job title>\",\n  \"score\":
+        <score from 0.0 to 5.0>,\n  \"notes\": \"<brief explanation of the score>\"\n}\n"},{"role":"user","content":"TechNova
+        Solutions looks for a skilled Ruby Developer! You will work on building and
+        maintaining web applications, collaborating with cross-functional teams, and
+        writing clean, efficient code. Experience with Ruby on Rails and SQL databases
+        is a plus.\n"}],"temperature":0.0}'
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '955'
+      Etag:
+      - W/"3bb-OUtouhoMvvC0Cez5pfE6xwKcbq8"
+      Date:
+      - Mon, 08 Sep 2025 14:03:05 GMT
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=5
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJpZCI6ICJjaGF0Y21wbC04M2hkNHppNmx3N2NhcHl1ZDZncjc1IiwKICAib2JqZWN0IjogImNoYXQuY29tcGxldGlvbiIsCiAgImNyZWF0ZWQiOiAxNzU3MzQwMTgyLAogICJtb2RlbCI6ICJvcGVuYWkvZ3B0LW9zcy0yMGIiLAogICJjaG9pY2VzIjogWwogICAgewogICAgICAiaW5kZXgiOiAwLAogICAgICAibWVzc2FnZSI6IHsKICAgICAgICAicm9sZSI6ICJhc3Npc3RhbnQiLAogICAgICAgICJjb250ZW50IjogIntcbiAgXCJjb21wYW55XCI6IFwiVGVjaE5vdmEgU29sdXRpb25zXCIsXG4gIFwicG9zaXRpb25cIjogXCJSdWJ5IERldmVsb3BlclwiLFxuICBcInNjb3JlXCI6IDQuNSxcbiAgXCJub3Rlc1wiOiBcIlRoZSByb2xlIGZvY3VzZXMgb24gUnVieSBhbmQgUmFpbHMgZGV2ZWxvcG1lbnQsIHdoaWNoIGFsaWducyB3ZWxsIHdpdGggdGhlIHVzZXLigJlzIHByZWZlcmVuY2UgZm9yIFJ1YnkuIFRoZSBqb2IgZGVzY3JpcHRpb24gaXMgY2xlYXIgYW5kIGNvbXBsZXRlLCBtYWtpbmcgaXQgYSBzdHJvbmcgbWF0Y2guXCJcbn0iLAogICAgICAgICJyZWFzb25pbmciOiAiV2UgbmVlZCB0byBwYXJzZSBjb21wYW55OiBUZWNoTm92YSBTb2x1dGlvbnMuIFBvc2l0aW9uOiBSdWJ5IERldmVsb3Blci4gU2NvcmU/IFVzZXIgbGlrZXMgUnVieS4gU28gcmVsZXZhbnQuIFByb2JhYmx5IDQuNS4gUHJvdmlkZSBKU09OLiIsCiAgICAgICAgInRvb2xfY2FsbHMiOiBbXQogICAgICB9LAogICAgICAibG9ncHJvYnMiOiBudWxsLAogICAgICAiZmluaXNoX3JlYXNvbiI6ICJzdG9wIgogICAgfQogIF0sCiAgInVzYWdlIjogewogICAgInByb21wdF90b2tlbnMiOiAzMzYsCiAgICAiY29tcGxldGlvbl90b2tlbnMiOiAxMTAsCiAgICAidG90YWxfdG9rZW5zIjogNDQ2CiAgfSwKICAic3RhdHMiOiB7fSwKICAic3lzdGVtX2ZpbmdlcnByaW50IjogIm9wZW5haS9ncHQtb3NzLTIwYiIKfQ==
+  recorded_at: Mon, 08 Sep 2025 14:03:05 GMT
+- request:
+    method: post
+    uri: http://127.0.0.1:1234/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"model":"openai/gpt-oss-20b","n":1,"messages":[{"role":"developer","content":"You
+        are my personal assistant for reviewing job postings and evaluating their
+        relevance to my profile.\n\nFor each provided job posting (which may come
+        as raw, unprocessed data from job boards and could be incomplete or messy),
+        do the following:\n\n1. Analyze the content and assess how well it matches
+        my professional background, preferences, and requirements.\n2. Provide a relevance
+        score from **0.0 (not relevant at all or missing data)** to **5.0 (perfect
+        match)**.\n3. Give a clear, concise explanation for the assigned score.\n\nIf
+        the posting is broken, incomplete, or lacks enough data to evaluate, assign
+        a **score of 0.0** and explain what is missing.\n\n---\n\n## My Professional
+        Profile\n\nI like Ruby\n\n\n---\n\n## Output Format\n\nReturn the analysis
+        as a JSON object in the following structure:\n\n{\n  \"company\": \"<detected
+        company name>\",\n  \"position\": \"<detected job title>\",\n  \"score\":
+        <score from 0.0 to 5.0>,\n  \"notes\": \"<brief explanation of the score>\"\n}\n"},{"role":"user","content":"TechNova
+        Solutions looks for a skilled Elixir Developer! You will work on building
+        and maintaining web applications, collaborating with cross-functional teams,
+        and writing clean, efficient code. Experience with Phoenix and Ecto is a plus.\n"}],"temperature":0.0}'
+    headers:
+      User-Agent:
+      - Faraday v2.13.4
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Powered-By:
+      - Express
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '925'
+      Etag:
+      - W/"39d-chtULnyhDNYbjxiJ/9ZDSzzvExM"
+      Date:
+      - Mon, 08 Sep 2025 14:03:08 GMT
+      Connection:
+      - keep-alive
+      Keep-Alive:
+      - timeout=5
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        ewogICJpZCI6ICJjaGF0Y21wbC0xYjZuZ2E3ajhma29kbndodmprMTQiLAogICJvYmplY3QiOiAiY2hhdC5jb21wbGV0aW9uIiwKICAiY3JlYXRlZCI6IDE3NTczNDAxODUsCiAgIm1vZGVsIjogIm9wZW5haS9ncHQtb3NzLTIwYiIsCiAgImNob2ljZXMiOiBbCiAgICB7CiAgICAgICJpbmRleCI6IDAsCiAgICAgICJtZXNzYWdlIjogewogICAgICAgICJyb2xlIjogImFzc2lzdGFudCIsCiAgICAgICAgImNvbnRlbnQiOiAie1xuICBcImNvbXBhbnlcIjogXCJUZWNoTm92YSBTb2x1dGlvbnNcIixcbiAgXCJwb3NpdGlvblwiOiBcIkVsaXhpciBEZXZlbG9wZXJcIixcbiAgXCJzY29yZVwiOiAwLjAsXG4gIFwibm90ZXNcIjogXCJUaGUgcm9sZSBmb2N1c2VzIG9uIEVsaXhpciwgUGhvZW5peCwgYW5kIEVjdG8sIHdoaWxlIHRoZSB1c2Vy4oCZcyBzdGF0ZWQgcHJlZmVyZW5jZSBpcyBSdWJ5LiBObyBvdmVybGFwIGluIHRlY2hub2xvZ3kgc3RhY2sgb3IgZXhwZXJpZW5jZS5cIlxufSIsCiAgICAgICAgInJlYXNvbmluZyI6ICJOZWVkIHRvIHBhcnNlIGNvbXBhbnkgVGVjaE5vdmEgU29sdXRpb25zLCBwb3NpdGlvbiBFbGl4aXIgRGV2ZWxvcGVyLiBTY29yZT8gVXNlciBsaWtlcyBSdWJ5IG9ubHkuIFNvIG5vdCByZWxldmFudC4gU2NvcmUgMC4wLiBQcm92aWRlIG5vdGVzLiIsCiAgICAgICAgInRvb2xfY2FsbHMiOiBbXQogICAgICB9LAogICAgICAibG9ncHJvYnMiOiBudWxsLAogICAgICAiZmluaXNoX3JlYXNvbiI6ICJzdG9wIgogICAgfQogIF0sCiAgInVzYWdlIjogewogICAgInByb21wdF90b2tlbnMiOiAzMzUsCiAgICAiY29tcGxldGlvbl90b2tlbnMiOiAxMDcsCiAgICAidG90YWxfdG9rZW5zIjogNDQyCiAgfSwKICAic3RhdHMiOiB7fSwKICAic3lzdGVtX2ZpbmdlcnByaW50IjogIm9wZW5haS9ncHQtb3NzLTIwYiIKfQ==
+  recorded_at: Mon, 08 Sep 2025 14:03:08 GMT
+recorded_with: VCR 6.3.1
