@@ -72,7 +72,7 @@ module Scouty
         https://example.com/job-b ...
         Company:  Company B
         Position: Position B
-        Score:    4.56
+        Score:    4.56🔥
         Notes B
 
         Unscored URL review completed.

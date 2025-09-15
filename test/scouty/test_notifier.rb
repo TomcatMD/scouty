@@ -8,9 +8,11 @@ module Scouty
       @stdout ||= StringIO.new
     end
 
-    def test_print_progress
-      notifier = Notifier.new(stdout:)
+    def notifier
+      @notifier ||= Notifier.new(stdout:)
+    end
 
+    def test_print_progress
       url = "https://example.com/job"
 
       report = stub(
@@ -28,7 +30,7 @@ module Scouty
         https://example.com/job ...
         Company:  Example Inc.
         Position: Ruby Developer
-        Score:    4.5
+        Score:    4.5🔥
         Good match!
 
         Unscored URL review completed.
@@ -43,9 +45,45 @@ module Scouty
       assert_equal expected, stdout.string
     end
 
-    def test_unknown_notification
-      notifier = Notifier.new(stdout:)
+    def test_review_completed_flame
+      url_a = "https://example.com/job-a"
+      report_a = stub(
+        :report,
+        company: "Company A",
+        position: "Position A",
+        score: 2.5,
+        notes: "Hot match!"
+      )
 
+      url_b = "https://example.com/job-b"
+      report_b = stub(
+        :report,
+        company: "Company B",
+        position: "Position B",
+        score: 2.0,
+        notes: "Regular match."
+      )
+
+      notifier.notify("review.url_review_completed", url: url_a, report: report_a)
+      notifier.notify("review.url_review_completed", url: url_b, report: report_b)
+
+      expected = <<~TEXT
+        Company:  Company A
+        Position: Position A
+        Score:    2.5🔥
+        Hot match!
+
+        Company:  Company B
+        Position: Position B
+        Score:    2.0
+        Regular match.
+
+      TEXT
+
+      assert_equal expected, stdout.string
+    end
+
+    def test_unknown_notification
       notifier.notify("unknown.example_a", url: "https://example.com")
       notifier.notify("unknown.example_b", foo: "bar")
 
@@ -57,7 +95,7 @@ module Scouty
       assert_equal expected, stdout.string
     end
 
-    def test_supporessed
+    def test_suppressed
       notifier = Notifier.new(stdout:, suppressed: true)
 
       url = "https://example.com/job"

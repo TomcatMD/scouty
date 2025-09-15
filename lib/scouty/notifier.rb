@@ -51,7 +51,7 @@ module Scouty
     def handle_url_review_completed(report:, **_)
       stdout.puts("Company:  #{report.company}")
       stdout.puts("Position: #{report.position}")
-      stdout.puts("Score:    #{report.score}")
+      stdout.puts("Score:    #{report.score}#{"🔥" if report.score >= 2.5}")
       stdout.puts(report.notes)
       stdout.puts
     end
