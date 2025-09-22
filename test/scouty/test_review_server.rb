@@ -7,19 +7,19 @@ module Scouty
     include TmpDir
 
     class FakeAssistant
-      Report = Data.define(:company, :position, :score, :notes)
+      Review = Data.define(:company, :position, :score, :notes)
 
-      attr_reader :reports
+      attr_reader :reviews
 
       def initialize
-        @reports = {
-          "https://example.com/job-a" => Report.new(
+        @reviews = {
+          "https://example.com/job-a" => Review.new(
             company: "Company A",
             position: "Position A",
             score: 1.23,
             notes: "Notes A"
           ),
-          "https://example.com/job-b" => Report.new(
+          "https://example.com/job-b" => Review.new(
             company: "Company B",
             position: "Position B",
             score: 4.56,
@@ -29,7 +29,7 @@ module Scouty
       end
 
       def review(url)
-        reports.fetch(url)
+        reviews.fetch(url)
       end
     end
 
@@ -46,7 +46,7 @@ module Scouty
     end
 
     def notifier
-      @notifier ||= Notifier.new(stdout:)
+      @notifier ||= Notifier.new(report: nil, stdout:)
     end
 
     def stdout
@@ -78,20 +78,20 @@ module Scouty
         Unscored URL review completed.
       TEXT
 
-      report_a = registry.find_report("https://example.com/job-a")
-      report_b = registry.find_report("https://example.com/job-b")
+      review_a = registry.find_review("https://example.com/job-a")
+      review_b = registry.find_review("https://example.com/job-b")
 
       assert_equal progress, stdout.string
 
-      assert_equal "Company A", report_a.company
-      assert_equal "Position A", report_a.position
-      assert_in_delta(1.23, report_a.score)
-      assert_equal "Notes A", report_a.notes
+      assert_equal "Company A", review_a.company
+      assert_equal "Position A", review_a.position
+      assert_in_delta(1.23, review_a.score)
+      assert_equal "Notes A", review_a.notes
 
-      assert_equal "Company B", report_b.company
-      assert_equal "Position B", report_b.position
-      assert_in_delta(4.56, report_b.score)
-      assert_equal "Notes B", report_b.notes
+      assert_equal "Company B", review_b.company
+      assert_equal "Position B", review_b.position
+      assert_in_delta(4.56, review_b.score)
+      assert_equal "Notes B", review_b.notes
     end
   end
 end

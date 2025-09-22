@@ -2,7 +2,7 @@
 
 module Scouty
   class Registry
-    Report = Data.define(:company, :position, :score, :notes, :scored_at)
+    Review = Data.define(:company, :position, :score, :notes, :scored_at)
 
     attr_reader :db
 
@@ -58,7 +58,7 @@ module Scouty
       result.first&.first
     end
 
-    def submit_report(url, analysis)
+    def submit_review(url, review)
       sets = [
         "company = ?",
         "position = ?",
@@ -68,10 +68,10 @@ module Scouty
       ]
 
       params = [
-        analysis.company,
-        analysis.position,
-        analysis.score,
-        analysis.notes,
+        review.company,
+        review.position,
+        review.score,
+        review.notes,
         current_time
       ]
 
@@ -80,7 +80,7 @@ module Scouty
       db.execute("UPDATE jobs SET #{sets.join(", ")} WHERE url = ?", params)
     end
 
-    def find_report(url)
+    def find_review(url)
       result =
         db.execute(<<~SQL, url)
           SELECT company, position, score, notes, scored_at
@@ -92,13 +92,80 @@ module Scouty
 
       return if result.empty?
 
-      Report.new(*result.first)
+      Review.new(*result.first)
+    end
+
+    def generate_report
+      Report.build(db:)
     end
 
     private
 
     def current_time
       DateTime.now.iso8601(3)
+    end
+
+    class Report
+      Company = Data.define(:name, :top_job_score, :jobs)
+      Job = Data.define(:url, :position, :score, :notes)
+
+      def self.build(db:)
+        records =
+          db.execute(<<~SQL)
+            WITH ranked_jobs AS (
+              SELECT
+                ROW_NUMBER() OVER (
+                  PARTITION BY company, position
+                  ORDER BY score DESC, created_at DESC
+                ) AS rank,
+                *
+              FROM jobs
+              WHERE score >= 0.0
+              AND company IS NOT NULL
+              AND company <> ''
+              AND deleted_at IS NULL
+            )
+
+            SELECT url, company, position, score, notes FROM ranked_jobs
+            WHERE rank = 1
+            ORDER BY score DESC
+          SQL
+
+        new(records:)
+      end
+
+      attr_reader :companies
+
+      def initialize(records:)
+        @companies = build_companies(records:)
+      end
+
+      private
+
+      def build_companies(records:)
+        records
+          .group_by { |i| i[1] }
+          .map { |name, group| build_company(name:, records: group) }
+      end
+
+      def build_company(name:, records:)
+        jobs = records.map { |r| build_job(record: r) }
+
+        Company.new(
+          name:,
+          top_job_score: jobs.map(&:score).max,
+          jobs: jobs
+        )
+      end
+
+      def build_job(record:)
+        Job.new(
+          url: record[0],
+          position: record[2],
+          score: record[3].to_f,
+          notes: record[4]
+        )
+      end
     end
   end
 end

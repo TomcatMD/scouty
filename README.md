@@ -39,14 +39,20 @@ bin/scouty
 
 ### 5. Review Results
 
-The results are saved into the SQLite database file specified in the configuration. Open the database with any SQLite tool, such as:
+By default, Scouty generates an HTML report at `data/report.html` for easy viewing of your job matches and analysis results. Simply open this file in your web browser.
+
+```sh
+open data/report.html
+```
+
+For more detailed inspection, you can also review the raw data in the SQLite database using tools such as:
 
 - [DB Browser for SQLite](https://sqlitebrowser.org)
 - The built-in SQLite CLI:
 
-  ```sh
-  sqlite3 jobs.db
-  ```
+```sh
+sqlite3 data/jobs.db
+```
 
 ## 📄 License
 

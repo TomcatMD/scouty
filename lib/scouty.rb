@@ -10,6 +10,7 @@ require_relative "scouty/config"
 require_relative "scouty/lm_studio_client"
 require_relative "scouty/notifier"
 require_relative "scouty/registry"
+require_relative "scouty/report_server"
 require_relative "scouty/retry"
 require_relative "scouty/review_server"
 require_relative "scouty/scrape_server"
@@ -46,7 +47,7 @@ module Scouty
     end
 
     def notifier
-      @notifier ||= Notifier.new(suppressed: config.notifier.suppressed)
+      @notifier ||= Notifier.new(report: config.notifier.report, suppressed: config.notifier.suppressed)
     end
 
     def profile = config.profile
@@ -65,6 +66,10 @@ module Scouty
 
     def review
       ReviewServer.new(assistant:, registry:, notifier:).serve
+    end
+
+    def report
+      ReportServer.new(registry:, notifier:).serve
     end
   end
 end

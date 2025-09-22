@@ -17,9 +17,9 @@ module Scouty
       reply = llm.ask(content, instructions: llm_instructions, temperature: 0.0)
       reply = normalizer.normalize_output(reply)
 
-      Report.from_llm_reply(reply)
+      Review.from_llm_reply(reply)
     rescue Webcache::FetchError
-      Report.webcache_fetch_error
+      Review.webcache_fetch_error
     end
 
     private
@@ -57,7 +57,7 @@ module Scouty
       MARKDOWN
     end
 
-    class Report
+    class Review
       attr_reader :company, :position, :score, :notes
 
       def initialize(company:, position:, score:, notes:)

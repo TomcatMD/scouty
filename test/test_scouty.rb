@@ -21,6 +21,7 @@ class TestScouty < Minitest::Test
               - https://example.com/job/elixir-developer.html
 
         notifier:
+          report: #{File.join(tmpdir, "report.html")}
           suppressed: true
 
         lm_studio:
@@ -66,24 +67,33 @@ class TestScouty < Minitest::Test
       scouty.review
     end
 
-    report_a = scouty.registry.find_report("https://example.com/job/ruby-developer.html")
-    report_b = scouty.registry.find_report("https://example.com/job/elixir-developer.html")
+    review_a = scouty.registry.find_review("https://example.com/job/ruby-developer.html")
+    review_b = scouty.registry.find_review("https://example.com/job/elixir-developer.html")
 
-    assert_equal "TechNova Solutions", report_a.company
-    assert_equal "Ruby Developer", report_a.position
-    assert_in_delta(4.5, report_a.score)
-    assert_equal <<~TEXT.split.join(" "), report_a.notes
+    assert_equal "TechNova Solutions", review_a.company
+    assert_equal "Ruby Developer", review_a.position
+    assert_in_delta(4.5, review_a.score)
+    assert_equal <<~TEXT.split.join(" "), review_a.notes
       The role focuses on Ruby and Rails development, which aligns well with the
       user’s preference for Ruby. The job description is clear and complete,
       making it a strong match.
     TEXT
 
-    assert_equal "TechNova Solutions", report_b.company
-    assert_equal "Elixir Developer", report_b.position
-    assert_in_delta 0.0, report_b.score
-    assert_equal <<~TEXT.split.join(" "), report_b.notes
+    assert_equal "TechNova Solutions", review_b.company
+    assert_equal "Elixir Developer", review_b.position
+    assert_in_delta 0.0, review_b.score
+    assert_equal <<~TEXT.split.join(" "), review_b.notes
       The role focuses on Elixir, Phoenix, and Ecto, while the user’s stated
       preference is Ruby. No overlap in technology stack or experience.
     TEXT
+  end
+
+  def test_report
+    scouty
+      .notifier
+      .expects(:notify)
+      .with("report.generated", report: anything)
+
+    scouty.report
   end
 end

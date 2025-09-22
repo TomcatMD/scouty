@@ -36,12 +36,12 @@ module Scouty
           }
         JSON
 
-      report = assistant.review("https://example.com/ruby-dev")
+      review = assistant.review("https://example.com/ruby-dev")
 
-      assert_equal "Example Inc.", report.company
-      assert_equal "Ruby Developer", report.position
-      assert_in_delta 4.5, report.score
-      assert_equal "Strong match!", report.notes
+      assert_equal "Example Inc.", review.company
+      assert_equal "Ruby Developer", review.position
+      assert_in_delta 4.5, review.score
+      assert_equal "Strong match!", review.notes
     end
 
     def test_review_fetch_error
@@ -51,12 +51,12 @@ module Scouty
 
       llm.expects(:ask).never
 
-      report = assistant.review("https://example.com/ruby-dev")
+      review = assistant.review("https://example.com/ruby-dev")
 
-      assert_nil report.company
-      assert_nil report.position
-      assert_equal(-1, report.score)
-      assert_equal "Job posting is not accessible", report.notes
+      assert_nil review.company
+      assert_nil review.position
+      assert_equal(-1, review.score)
+      assert_equal "Job posting is not accessible", review.notes
     end
 
     def test_input_normalization
@@ -109,12 +109,12 @@ module Scouty
           ```
         TEXT
 
-      report = assistant.review("https://example.com/ruby-dev")
+      review = assistant.review("https://example.com/ruby-dev")
 
-      assert_equal "Example Inc.", report.company
-      assert_equal "Ruby Developer", report.position
-      assert_in_delta(4.5, report.score)
-      assert_equal "Strong match!", report.notes
+      assert_equal "Example Inc.", review.company
+      assert_equal "Ruby Developer", review.position
+      assert_in_delta(4.5, review.score)
+      assert_equal "Strong match!", review.notes
     end
 
     class TestLLMMessageNormalizer < Minitest::Test

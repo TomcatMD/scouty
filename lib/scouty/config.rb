@@ -7,7 +7,7 @@ module Scouty
   ConfigRegistry = Data.define(:file)
   ConfigScrapper = Data.define(:source, :params)
   ConfigLMStudio = Data.define(:url, :model)
-  ConfigNotifier = Data.define(:suppressed)
+  ConfigNotifier = Data.define(:report, :suppressed)
 
   class << Config
     def from_file(file)
@@ -59,6 +59,7 @@ module Scouty
 
     def read_notifier_config(data)
       ConfigNotifier.new(
+        report: read_config(data, "notifier", "report"),
         suppressed: read_config(data, "notifier", "suppressed", default: false)
       )
     end

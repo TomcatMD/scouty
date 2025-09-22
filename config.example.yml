@@ -105,6 +105,16 @@ registry:
   file: data/jobs.db
 
 
+# Notifier
+# Defines how notifications are handled during processing.
+# - report: path to the generated HTML report containing the results.
+# - suppressed: if true, suppresses all notifications including the resulted
+#   report printing
+notifier:
+  report: data/report.html
+  suppressed: false
+
+
 # Profile
 # Describes your professional background. Provide a clear, honest summary of
 # skills, experience, and preferences for better results. Format is flexible,

@@ -6,6 +6,7 @@ require_relative "../lib/scouty"
 
 skip_scrape = false
 config = nil
+report_only = false
 
 options = OptionParser.new do |opts|
   opts.banner = "Usage: bin/scouty [options]"
@@ -39,6 +40,10 @@ options = OptionParser.new do |opts|
     puts Scouty::VERSION
     exit
   end
+
+  opts.on_tail("--report-only", "Print the report based on the data captured earlier without any processing") do
+    report_only = true
+  end
 end
 
 begin
@@ -49,7 +54,11 @@ rescue OptionParser::InvalidOption, OptionParser::MissingArgument => e
   exit 1
 end
 
-Scouty::App.new(config:).tap do |app|
-  app.scrape unless skip_scrape
-  app.review
+scouty = Scouty.init(config:)
+
+unless report_only
+  scouty.scrape unless skip_scrape
+  scouty.review
 end
+
+scouty.report

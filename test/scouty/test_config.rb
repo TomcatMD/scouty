@@ -22,6 +22,7 @@ module Scouty
         - source: example-c.com
 
       notifier:
+        report: /a/b/c/report.html
         suppressed: true
 
       lm_studio:
@@ -46,6 +47,7 @@ module Scouty
       assert_equal "example-c.com", config.scrapers[2].source
       assert_empty(config.scrapers[2].params)
 
+      assert_equal "/a/b/c/report.html", config.notifier.report
       assert_same true, config.notifier.suppressed
 
       assert_equal "http://127.0.0.1:1234", config.lm_studio.url
@@ -55,8 +57,8 @@ module Scouty
     end
 
     def test_default_values
-      example_without_notifier = YAML.dump(YAML.load(EXAMPLE).except("notifier"))
-      config = Config.from_yaml(example_without_notifier)
+      example_without_suppressed_notifier = YAML.dump(YAML.load(EXAMPLE).merge("notifier" => { "report" => "/a/b/c/report.html" }))
+      config = Config.from_yaml(example_without_suppressed_notifier)
 
       assert_same false, config.notifier.suppressed
     end

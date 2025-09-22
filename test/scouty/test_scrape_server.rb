@@ -21,7 +21,7 @@ module Scouty
     end
 
     def notifier
-      @notifier ||= Notifier.new(stdout:)
+      @notifier ||= Notifier.new(report: File.join(tmpdir, "report.html"), stdout:)
     end
 
     def stdout

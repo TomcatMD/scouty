@@ -18,8 +18,8 @@ module Scouty
         break if url.nil?
 
         notifier.notify("review.url_review_started", url:)
-        report = review_url(url)
-        notifier.notify("review.url_review_completed", url:, report:)
+        review = review_url(url)
+        notifier.notify("review.url_review_completed", url:, review:)
       end
 
       notifier.notify("review.unscored_url_review_completed")
@@ -32,10 +32,10 @@ module Scouty
     end
 
     def review_url(url)
-      report = Retry.run { assistant.review(url) }
-      Retry.run { registry.submit_report(url, report) }
+      review = Retry.run { assistant.review(url) }
+      Retry.run { registry.submit_review(url, review) }
 
-      report
+      review
     end
   end
 end
