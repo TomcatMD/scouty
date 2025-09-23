@@ -15,7 +15,25 @@ module Scouty
     end
 
     def notifier
-      @notifier ||= Notifier.new(report: report_filename, stdout:)
+      @notifier ||= Notifier.new(hot_score: 2.5, telegram: nil, report: report_filename, stdout:)
+    end
+
+    def test_from_config
+      notifier = Notifier.from_config(
+        stub(
+          :config,
+          hot_score: 1.23,
+          telegram: stub(:telegram, token: "telegram-token", chat_id: 12_345_678),
+          report: "/a/b/c/d.html",
+          suppressed: true
+        )
+      )
+
+      assert_in_delta(1.23, notifier.hot_score)
+      assert_equal "telegram-token", notifier.telegram.token
+      assert_equal 12_345_678, notifier.telegram.chat_id
+      assert_equal "/a/b/c/d.html", notifier.report
+      assert_same true, notifier.suppressed
     end
 
     def test_print_progress
@@ -126,6 +144,8 @@ module Scouty
 
     def test_suppressed
       notifier = Notifier.new(
+        hot_score: 2.5,
+        telegram: nil,
         report: report_filename,
         suppressed: true,
         stdout:
@@ -153,6 +173,26 @@ module Scouty
       refute_path_exists report_filename
     end
 
+    class TestNotifierWithTelegram < self
+      def telegram
+        @telegram ||= Notifier::Telegram.new(token: "example-token", chat_id: 12_345_678)
+      end
+
+      def notifier
+        @notifier ||= Notifier.new(hot_score: 2.5, telegram: telegram, report: report_filename, stdout:)
+      end
+
+      def setup
+        super
+
+        telegram
+          .client
+          .api
+          .stubs(:send_message)
+          .with(chat_id: 12_345_678, text: kind_of(String))
+      end
+    end
+
     class TestHtmlReport < Minitest::Test
       include TmpDir
 
@@ -161,7 +201,7 @@ module Scouty
       end
 
       def html_report
-        @html_report ||= Notifier::HtmlReport.new(filename:)
+        @html_report ||= Notifier::HtmlReport.new(filename:, hot_score: 3.0)
       end
 
       def test_render
@@ -186,8 +226,8 @@ module Scouty
         assert_equal "high", html_report.company_badge_class(stub(:company, top_job_score: 3.45))
         assert_equal "high", html_report.company_badge_class(stub(:company, top_job_score: 3.0))
         assert_equal "medium", html_report.company_badge_class(stub(:company, top_job_score: 2.99))
-        assert_equal "medium", html_report.company_badge_class(stub(:company, top_job_score: 2.0))
-        assert_equal "low", html_report.company_badge_class(stub(:company, top_job_score: 1.99))
+        assert_equal "medium", html_report.company_badge_class(stub(:company, top_job_score: 1.5))
+        assert_equal "low", html_report.company_badge_class(stub(:company, top_job_score: 1.49))
         assert_equal "low", html_report.company_badge_class(stub(:company, top_job_score: 0.0))
       end
 
@@ -195,8 +235,8 @@ module Scouty
         assert_equal "bg-success", html_report.job_badge_class(stub(:job, score: 3.45))
         assert_equal "bg-success", html_report.job_badge_class(stub(:job, score: 3.0))
         assert_equal "bg-warning", html_report.job_badge_class(stub(:job, score: 2.99))
-        assert_equal "bg-warning", html_report.job_badge_class(stub(:job, score: 2.0))
-        assert_equal "bg-secondary", html_report.job_badge_class(stub(:job, score: 1.99))
+        assert_equal "bg-warning", html_report.job_badge_class(stub(:job, score: 1.5))
+        assert_equal "bg-secondary", html_report.job_badge_class(stub(:job, score: 1.49))
         assert_equal "bg-secondary", html_report.job_badge_class(stub(:job, score: 0.0))
       end
 

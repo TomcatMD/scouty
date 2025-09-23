@@ -21,6 +21,7 @@ class TestScouty < Minitest::Test
               - https://example.com/job/elixir-developer.html
 
         notifier:
+          hot_score: 2.5
           report: #{File.join(tmpdir, "report.html")}
           suppressed: true
 

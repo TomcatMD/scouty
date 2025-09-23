@@ -7,7 +7,8 @@ module Scouty
   ConfigRegistry = Data.define(:file)
   ConfigScrapper = Data.define(:source, :params)
   ConfigLMStudio = Data.define(:url, :model)
-  ConfigNotifier = Data.define(:report, :suppressed)
+  ConfigNotifier = Data.define(:hot_score, :telegram, :report, :suppressed)
+  ConfigTelegram = Data.define(:token, :chat_id)
 
   class << Config
     def from_file(file)
@@ -59,8 +60,19 @@ module Scouty
 
     def read_notifier_config(data)
       ConfigNotifier.new(
+        hot_score: read_config(data, "notifier", "hot_score"),
+        telegram: read_telegram_config(data),
         report: read_config(data, "notifier", "report"),
         suppressed: read_config(data, "notifier", "suppressed", default: false)
+      )
+    end
+
+    def read_telegram_config(data)
+      return unless read_config(data, "notifier", "telegram", default: nil)
+
+      ConfigTelegram.new(
+        token: read_config(data, "notifier", "telegram", "token"),
+        chat_id: read_config(data, "notifier", "telegram", "chat_id")
       )
     end
 

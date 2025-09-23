@@ -4,6 +4,7 @@ require "bundler/setup"
 Bundler.require(:default)
 
 require "yaml"
+require "telegram/bot"
 
 require_relative "scouty/assistant"
 require_relative "scouty/config"
@@ -47,7 +48,7 @@ module Scouty
     end
 
     def notifier
-      @notifier ||= Notifier.new(report: config.notifier.report, suppressed: config.notifier.suppressed)
+      @notifier ||= Notifier.from_config(config.notifier)
     end
 
     def profile = config.profile

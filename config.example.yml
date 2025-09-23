@@ -106,14 +106,23 @@ registry:
 
 
 # Notifier
-# Defines how notifications are handled during processing.
-# - report: path to the generated HTML report containing the results.
-# - suppressed: if true, suppresses all notifications including the resulted
-#   report printing
+# Configures how notifications and output are handled.
 notifier:
-  report: data/report.html
-  suppressed: false
+  # Sets the score threshold for marking a job as a "hot" posting.
+  # Jobs with a score equal or above this value will be marked with 🔥 in the
+  # output, and a notification will be sent to Telegram (if enabled).
+  hot_score: 2.5
 
+  # Path to the generated HTML report summarizing job matches.
+  report: data/report.html
+
+  # Optional: Enable and configure Telegram bot notifications for job matches.
+  # telegram:
+  #   token: <bot token>
+  #   chat_id: <chat id for notifications>
+
+  # Optional: Suppress all notifications, including Telegram.
+  # suppressed: true
 
 # Profile
 # Describes your professional background. Provide a clear, honest summary of

@@ -46,7 +46,7 @@ module Scouty
     end
 
     def notifier
-      @notifier ||= Notifier.new(report: nil, stdout:)
+      @notifier ||= Notifier.new(hot_score: 2.5, telegram: nil, report: nil, stdout:)
     end
 
     def stdout

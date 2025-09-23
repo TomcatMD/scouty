@@ -10,6 +10,7 @@ gem "rake", "~> 13.0"
 gem "retriable", "~> 3.1", ">= 3.1.2"
 gem "reverse_markdown", "~> 3.0"
 gem "sqlite3", "~> 2.7", ">= 2.7.3"
+gem "telegram-bot-ruby", "~> 2.4"
 
 group :test do
   gem "mocha", "~> 2.7", ">= 2.7.1"

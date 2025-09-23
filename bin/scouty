@@ -8,7 +8,7 @@ skip_scrape = false
 config = nil
 report_only = false
 
-options = OptionParser.new do |opts|
+options = OptionParser.new do |opts| # rubocop:disable Metrics/BlockLength
   opts.banner = "Usage: bin/scouty [options]"
 
   opts.separator ""

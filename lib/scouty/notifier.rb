@@ -2,9 +2,30 @@
 
 module Scouty
   class Notifier
-    attr_reader :report, :suppressed, :stdout, :handlers
+    class << self
+      def from_config(config)
+        telegram =
+          unless config.telegram.nil?
+            Telegram.new(
+              token: config.telegram.token,
+              chat_id: config.telegram.chat_id
+            )
+          end
 
-    def initialize(report:, suppressed: false, stdout: $stdout)
+        new(
+          hot_score: config.hot_score,
+          telegram:,
+          report: config.report,
+          suppressed: config.suppressed
+        )
+      end
+    end
+
+    attr_reader :hot_score, :telegram, :report, :suppressed, :stdout, :handlers
+
+    def initialize(hot_score:, telegram:, report:, suppressed: false, stdout: $stdout)
+      @hot_score = hot_score
+      @telegram = telegram
       @report = report
       @suppressed = suppressed
       @stdout = stdout
@@ -50,29 +71,44 @@ module Scouty
       stdout.puts("#{url} ...")
     end
 
-    def handle_url_review_completed(review:, **_)
-      stdout.puts("Company:  #{review.company}")
-      stdout.puts("Position: #{review.position}")
-      stdout.puts("Score:    #{review.score}#{"🔥" if review.score >= 2.5}")
-      stdout.puts(review.notes)
-      stdout.puts
+    def handle_url_review_completed(url:, review:)
+      stdout.puts(<<~TEXT)
+        Company:  #{review.company}
+        Position: #{review.position}
+        Score:    #{review.score}#{"🔥" if review.score >= hot_score}
+        #{review.notes}
+
+      TEXT
+
+      telegram&.send_message(<<~TEXT) if review.score >= hot_score
+        #{url}
+
+        #{review.company}
+        #{review.position}
+
+        Score: #{review.score} 🔥
+        #{review.notes}
+      TEXT
     end
 
     def handle_report_generated(report:)
-      html = HtmlReport.new(filename: self.report)
+      html = HtmlReport.new(filename: self.report, hot_score:)
 
       html.render(report: report)
       stdout.puts("Report file has been generated at #{html.filename}")
+
+      telegram&.send_message("New report is ready and awaits your review.")
     end
 
     class HtmlReport
       TOP_JOBS_COUNT = 3
 
-      attr_reader :template, :filename
+      attr_reader :template, :filename, :hot_score
 
-      def initialize(filename:)
+      def initialize(filename:, hot_score:)
         @template = ERB.new(File.read(File.join(__dir__, "notifier.report.rhtml")))
         @filename = filename
+        @hot_score = hot_score
       end
 
       def render(report:)
@@ -82,9 +118,9 @@ module Scouty
       def company_badge_class(company)
         score = company.top_job_score
 
-        if score >= 3.0
+        if hot_score?(score)
           "high"
-        elsif score >= 2.0
+        elsif almost_hot_score?(score)
           "medium"
         else
           "low"
@@ -94,9 +130,9 @@ module Scouty
       def job_badge_class(job)
         score = job.score
 
-        if score >= 3.0
+        if hot_score?(score)
           "bg-success"
-        elsif score >= 2.0
+        elsif almost_hot_score?(score)
           "bg-warning"
         else
           "bg-secondary"
@@ -113,6 +149,30 @@ module Scouty
 
       def more_company_jobs?(company)
         company.jobs.size > TOP_JOBS_COUNT
+      end
+
+      private
+
+      def hot_score?(score)
+        score >= hot_score
+      end
+
+      def almost_hot_score?(score)
+        score >= 0.5 * hot_score
+      end
+    end
+
+    class Telegram
+      attr_reader :token, :chat_id, :client
+
+      def initialize(token:, chat_id:)
+        @token = token
+        @chat_id = chat_id
+        @client = ::Telegram::Bot::Client.new(token)
+      end
+
+      def send_message(text)
+        client.api.send_message(chat_id:, text:)
       end
     end
   end

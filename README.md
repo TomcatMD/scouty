@@ -8,6 +8,7 @@
 - 🤖 **Local LLM analysis** – Uses `gpt-oss-20b` via [LM Studio](https://lmstudio.ai) (no API keys required).
 - 📊 **Relevance scoring** – Rates jobs from `0.0` to `5.0` with a brief explanation.
 - 💾 **Persistent storage** – Saves all results in a lightweight `SQLite` database (`data/jobs.db`).
+- 📲 **Telegram notifications** – Instant alerts about new hot matches via Telegram.
 
 ## 🚀 Getting Started
 

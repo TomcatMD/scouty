@@ -22,6 +22,7 @@ module Scouty
         - source: example-c.com
 
       notifier:
+        hot_score: 2.5
         report: /a/b/c/report.html
         suppressed: true
 
@@ -57,8 +58,10 @@ module Scouty
     end
 
     def test_default_values
-      example_without_suppressed_notifier = YAML.dump(YAML.load(EXAMPLE).merge("notifier" => { "report" => "/a/b/c/report.html" }))
-      config = Config.from_yaml(example_without_suppressed_notifier)
+      example = YAML.load(EXAMPLE)
+      example["notifier"].delete("suppressed")
+
+      config = Config.from_yaml(YAML.dump(example))
 
       assert_same false, config.notifier.suppressed
     end
@@ -92,6 +95,20 @@ module Scouty
       File.write(filename, EXAMPLE)
 
       assert_equal Config.from_yaml(EXAMPLE), Config.from_file(filename)
+    end
+
+    def test_telegram_config
+      example = YAML.load(EXAMPLE)
+
+      example["notifier"]["telegram"] = {
+        "token" => "example-telegram-token",
+        "chat_id" => 12_345_678
+      }
+
+      config = Config.from_yaml(YAML.dump(example))
+
+      assert_equal "example-telegram-token", config.notifier.telegram.token
+      assert_equal 12_345_678, config.notifier.telegram.chat_id
     end
   end
 end

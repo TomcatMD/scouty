@@ -19,7 +19,7 @@ module Scouty
     end
 
     def notifier
-      @notifier ||= Notifier.new(report: report_filename, stdout:)
+      @notifier ||= Notifier.new(hot_score: 2.5, telegram: nil, report: report_filename, stdout:)
     end
 
     def server
