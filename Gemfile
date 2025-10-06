@@ -4,6 +4,7 @@ source "https://rubygems.org"
 
 gem "erb", "~> 5.0", ">= 5.0.2"
 gem "faraday", "~> 2.13", ">= 2.13.4"
+gem "ferrum", "~> 0.17.1"
 gem "irb"
 gem "minitest", "~> 5.16"
 gem "rake", "~> 13.0"

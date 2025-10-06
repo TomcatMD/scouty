@@ -2,12 +2,11 @@
 
 module Scouty
   class Webcache
-    class FetchError < StandardError; end
-
-    attr_reader :dir
+    attr_reader :dir, :fetcher
 
     def initialize(dir:)
       @dir = dir
+      @fetcher = FerrumFetcher.new
     end
 
     def fetch(url)
@@ -16,7 +15,7 @@ module Scouty
       content = read_cache(filename)
       return content unless content.nil?
 
-      content = fetch_by_web_request(url)
+      content = fetcher.fetch(url)
       write_cache(filename, content)
 
       content
@@ -46,13 +45,17 @@ module Scouty
       File.write(filename, content)
     end
 
-    def fetch_by_web_request(url)
-      response = Faraday.get(url)
+    class FerrumFetcher
+      def fetch(url)
+        browser = Ferrum::Browser.new(timeout: 30)
 
-      raise FetchError if [308, 404].include?(response.status)
-      raise "Unexpected response #{response.status}\n#{response.body}" unless response.status == 200
+        browser.goto(url)
+        browser.network.wait_for_idle
+        html = browser.body
+        browser.quit
 
-      response.body
+        html
+      end
     end
   end
 end

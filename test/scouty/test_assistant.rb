@@ -44,21 +44,6 @@ module Scouty
       assert_equal "Strong match!", review.notes
     end
 
-    def test_review_fetch_error
-      webcache
-        .expects(:fetch)
-        .raises(Webcache::FetchError)
-
-      llm.expects(:ask).never
-
-      review = assistant.review("https://example.com/ruby-dev")
-
-      assert_nil review.company
-      assert_nil review.position
-      assert_equal(-1, review.score)
-      assert_equal "Job posting is not accessible", review.notes
-    end
-
     def test_input_normalization
       webcache
         .expects(:fetch)

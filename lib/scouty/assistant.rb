@@ -18,8 +18,6 @@ module Scouty
       reply = normalizer.normalize_output(reply)
 
       Review.from_llm_reply(reply)
-    rescue Webcache::FetchError
-      Review.webcache_fetch_error
     end
 
     private
@@ -68,15 +66,6 @@ module Scouty
       end
 
       class << self
-        def webcache_fetch_error
-          new(
-            company: nil,
-            position: nil,
-            score: -1,
-            notes: "Job posting is not accessible"
-          )
-        end
-
         def from_llm_reply(content)
           values = JSON.parse!(content)
 
