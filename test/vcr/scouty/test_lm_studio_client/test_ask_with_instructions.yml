@@ -9,7 +9,7 @@ http_interactions:
         with ''Hello, <PROVIDED NAME>!''"},{"role":"user","content":"Alex"}]}'
     headers:
       User-Agent:
-      - Faraday v2.13.4
+      - Faraday v2.14.0
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -26,11 +26,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '570'
+      - '562'
       Etag:
-      - W/"23a-f4Ef68jiQmwaFaAv/0nyGm+JHGA"
+      - W/"232-OCwtlXuCR3KVFQpuqpYSd2clmUc"
       Date:
-      - Mon, 08 Sep 2025 14:03:02 GMT
+      - Mon, 06 Oct 2025 11:23:11 GMT
       Connection:
       - keep-alive
       Keep-Alive:
@@ -39,9 +39,9 @@ http_interactions:
       encoding: UTF-8
       string: |-
         {
-          "id": "chatcmpl-jo3eaqxbco9woyqqit5rbr",
+          "id": "chatcmpl-glnwt0dyzvk9juptoxh6a",
           "object": "chat.completion",
-          "created": 1757340181,
+          "created": 1759749790,
           "model": "openai/gpt-oss-20b",
           "choices": [
             {
@@ -49,7 +49,7 @@ http_interactions:
               "message": {
                 "role": "assistant",
                 "content": "Hello, Alex!",
-                "reasoning": "We need to reply \"Hello, Alex!\"",
+                "reasoning": "Need to reply Hello, Alex!",
                 "tool_calls": []
               },
               "logprobs": null,
@@ -58,11 +58,11 @@ http_interactions:
           ],
           "usage": {
             "prompt_tokens": 87,
-            "completion_tokens": 23,
-            "total_tokens": 110
+            "completion_tokens": 21,
+            "total_tokens": 108
           },
           "stats": {},
           "system_fingerprint": "openai/gpt-oss-20b"
         }
-  recorded_at: Mon, 08 Sep 2025 14:03:02 GMT
+  recorded_at: Mon, 06 Oct 2025 11:23:11 GMT
 recorded_with: VCR 6.3.1

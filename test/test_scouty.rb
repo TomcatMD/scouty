@@ -75,9 +75,10 @@ class TestScouty < Minitest::Test
     assert_equal "Ruby Developer", review_a.position
     assert_in_delta(4.5, review_a.score)
     assert_equal <<~TEXT.split.join(" "), review_a.notes
-      The role focuses on Ruby and Rails development, which aligns well with the
-      user’s preference for Ruby. The job description is clear and complete,
-      making it a strong match.
+      The posting explicitly seeks a Ruby developer, aligning well with the
+      user’s preference for Ruby. It mentions Rails and SQL, which are common in
+      Ruby roles, but lacks details on other preferences or requirements that
+      might further refine relevance.
     TEXT
 
     assert_equal "TechNova Solutions", review_b.company

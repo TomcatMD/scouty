@@ -9,7 +9,7 @@ http_interactions:
         something!"}],"temperature":1.23}'
     headers:
       User-Agent:
-      - Faraday v2.13.4
+      - Faraday v2.14.0
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -26,11 +26,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '585'
+      - '635'
       Etag:
-      - W/"249-uSReX48tNvUXDfp117uCFJd053c"
+      - W/"27b-8oAORBMl3pM8gOJQf6DsZdf/TiI"
       Date:
-      - Mon, 08 Sep 2025 14:03:01 GMT
+      - Mon, 06 Oct 2025 11:23:12 GMT
       Connection:
       - keep-alive
       Keep-Alive:
@@ -38,6 +38,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        ewogICJpZCI6ICJjaGF0Y21wbC0xZ3Z2cHowazNqM3NidXZuYjYzZGloIiwKICAib2JqZWN0IjogImNoYXQuY29tcGxldGlvbiIsCiAgImNyZWF0ZWQiOiAxNzU3MzQwMTgxLAogICJtb2RlbCI6ICJvcGVuYWkvZ3B0LW9zcy0yMGIiLAogICJjaG9pY2VzIjogWwogICAgewogICAgICAiaW5kZXgiOiAwLAogICAgICAibWVzc2FnZSI6IHsKICAgICAgICAicm9sZSI6ICJhc3Npc3RhbnQiLAogICAgICAgICJjb250ZW50IjogIkhlbGxvIHRoZXJlISBIb3figJlzIHlvdXIgZGF5IGdvaW5nPyIsCiAgICAgICAgInJlYXNvbmluZyI6ICJKdXN0IGEgZnJpZW5kbHkgZ3JlZXRpbmcuIiwKICAgICAgICAidG9vbF9jYWxscyI6IFtdCiAgICAgIH0sCiAgICAgICJsb2dwcm9icyI6IG51bGwsCiAgICAgICJmaW5pc2hfcmVhc29uIjogInN0b3AiCiAgICB9CiAgXSwKICAidXNhZ2UiOiB7CiAgICAicHJvbXB0X3Rva2VucyI6IDcwLAogICAgImNvbXBsZXRpb25fdG9rZW5zIjogMjQsCiAgICAidG90YWxfdG9rZW5zIjogOTQKICB9LAogICJzdGF0cyI6IHt9LAogICJzeXN0ZW1fZmluZ2VycHJpbnQiOiAib3BlbmFpL2dwdC1vc3MtMjBiIgp9
-  recorded_at: Mon, 08 Sep 2025 14:03:01 GMT
+        ewogICJpZCI6ICJjaGF0Y21wbC00N2xyMmgzeXF5ZDRkaHBtNjg1YWpvIiwKICAib2JqZWN0IjogImNoYXQuY29tcGxldGlvbiIsCiAgImNyZWF0ZWQiOiAxNzU5NzQ5NzkxLAogICJtb2RlbCI6ICJvcGVuYWkvZ3B0LW9zcy0yMGIiLAogICJjaG9pY2VzIjogWwogICAgewogICAgICAiaW5kZXgiOiAwLAogICAgICAibWVzc2FnZSI6IHsKICAgICAgICAicm9sZSI6ICJhc3Npc3RhbnQiLAogICAgICAgICJjb250ZW50IjogIlN1cmUgdGhpbmchIPCfjJ8gSG93IGNhbiBJIGhlbHAgeW91IHRvZGF5PyIsCiAgICAgICAgInJlYXNvbmluZyI6ICJVc2VyIGp1c3Qgc2F5cyBcIlNheSBzb21ldGhpbmchXCIuIFdlIHJlc3BvbmQgd2l0aCBhIGZyaWVuZGx5IHJlcGx5LiIsCiAgICAgICAgInRvb2xfY2FsbHMiOiBbXQogICAgICB9LAogICAgICAibG9ncHJvYnMiOiBudWxsLAogICAgICAiZmluaXNoX3JlYXNvbiI6ICJzdG9wIgogICAgfQogIF0sCiAgInVzYWdlIjogewogICAgInByb21wdF90b2tlbnMiOiA3MCwKICAgICJjb21wbGV0aW9uX3Rva2VucyI6IDM1LAogICAgInRvdGFsX3Rva2VucyI6IDEwNQogIH0sCiAgInN0YXRzIjoge30sCiAgInN5c3RlbV9maW5nZXJwcmludCI6ICJvcGVuYWkvZ3B0LW9zcy0yMGIiCn0=
+  recorded_at: Mon, 06 Oct 2025 11:23:12 GMT
 recorded_with: VCR 6.3.1

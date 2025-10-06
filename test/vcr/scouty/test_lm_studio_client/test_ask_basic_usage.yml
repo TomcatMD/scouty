@@ -9,7 +9,7 @@ http_interactions:
         ''Hello, World!''"}]}'
     headers:
       User-Agent:
-      - Faraday v2.13.4
+      - Faraday v2.14.0
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -28,9 +28,9 @@ http_interactions:
       Content-Length:
       - '560'
       Etag:
-      - W/"230-3oYm2WS7DX4f0x6TqFBM+Ra5BH0"
+      - W/"230-XUkXUGFUoE4WFi5Hmc/bU0TZGz8"
       Date:
-      - Mon, 08 Sep 2025 14:03:01 GMT
+      - Mon, 06 Oct 2025 11:23:11 GMT
       Connection:
       - keep-alive
       Keep-Alive:
@@ -39,9 +39,9 @@ http_interactions:
       encoding: UTF-8
       string: |-
         {
-          "id": "chatcmpl-ji1f32dgh4r1f0eh3k1uh8j",
+          "id": "chatcmpl-8iwzu3a31mlgb2ijoga65q",
           "object": "chat.completion",
-          "created": 1757340180,
+          "created": 1759749791,
           "model": "openai/gpt-oss-20b",
           "choices": [
             {
@@ -49,7 +49,7 @@ http_interactions:
               "message": {
                 "role": "assistant",
                 "content": "Hello, World!",
-                "reasoning": "Just reply the string.",
+                "reasoning": "Just reply that string.",
                 "tool_calls": []
               },
               "logprobs": null,
@@ -64,5 +64,5 @@ http_interactions:
           "stats": {},
           "system_fingerprint": "openai/gpt-oss-20b"
         }
-  recorded_at: Mon, 08 Sep 2025 14:03:01 GMT
+  recorded_at: Mon, 06 Oct 2025 11:23:11 GMT
 recorded_with: VCR 6.3.1

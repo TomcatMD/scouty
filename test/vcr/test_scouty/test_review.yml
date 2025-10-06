@@ -25,7 +25,7 @@ http_interactions:
         is a plus.\n"}],"temperature":0.0}'
     headers:
       User-Agent:
-      - Faraday v2.13.4
+      - Faraday v2.14.0
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -42,11 +42,11 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '955'
+      - '1032'
       Etag:
-      - W/"3bb-OUtouhoMvvC0Cez5pfE6xwKcbq8"
+      - W/"408-byc80O5EGraC6ToiKafWhpnGE7A"
       Date:
-      - Mon, 08 Sep 2025 14:03:05 GMT
+      - Mon, 06 Oct 2025 11:20:09 GMT
       Connection:
       - keep-alive
       Keep-Alive:
@@ -54,8 +54,8 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        ewogICJpZCI6ICJjaGF0Y21wbC04M2hkNHppNmx3N2NhcHl1ZDZncjc1IiwKICAib2JqZWN0IjogImNoYXQuY29tcGxldGlvbiIsCiAgImNyZWF0ZWQiOiAxNzU3MzQwMTgyLAogICJtb2RlbCI6ICJvcGVuYWkvZ3B0LW9zcy0yMGIiLAogICJjaG9pY2VzIjogWwogICAgewogICAgICAiaW5kZXgiOiAwLAogICAgICAibWVzc2FnZSI6IHsKICAgICAgICAicm9sZSI6ICJhc3Npc3RhbnQiLAogICAgICAgICJjb250ZW50IjogIntcbiAgXCJjb21wYW55XCI6IFwiVGVjaE5vdmEgU29sdXRpb25zXCIsXG4gIFwicG9zaXRpb25cIjogXCJSdWJ5IERldmVsb3BlclwiLFxuICBcInNjb3JlXCI6IDQuNSxcbiAgXCJub3Rlc1wiOiBcIlRoZSByb2xlIGZvY3VzZXMgb24gUnVieSBhbmQgUmFpbHMgZGV2ZWxvcG1lbnQsIHdoaWNoIGFsaWducyB3ZWxsIHdpdGggdGhlIHVzZXLigJlzIHByZWZlcmVuY2UgZm9yIFJ1YnkuIFRoZSBqb2IgZGVzY3JpcHRpb24gaXMgY2xlYXIgYW5kIGNvbXBsZXRlLCBtYWtpbmcgaXQgYSBzdHJvbmcgbWF0Y2guXCJcbn0iLAogICAgICAgICJyZWFzb25pbmciOiAiV2UgbmVlZCB0byBwYXJzZSBjb21wYW55OiBUZWNoTm92YSBTb2x1dGlvbnMuIFBvc2l0aW9uOiBSdWJ5IERldmVsb3Blci4gU2NvcmU/IFVzZXIgbGlrZXMgUnVieS4gU28gcmVsZXZhbnQuIFByb2JhYmx5IDQuNS4gUHJvdmlkZSBKU09OLiIsCiAgICAgICAgInRvb2xfY2FsbHMiOiBbXQogICAgICB9LAogICAgICAibG9ncHJvYnMiOiBudWxsLAogICAgICAiZmluaXNoX3JlYXNvbiI6ICJzdG9wIgogICAgfQogIF0sCiAgInVzYWdlIjogewogICAgInByb21wdF90b2tlbnMiOiAzMzYsCiAgICAiY29tcGxldGlvbl90b2tlbnMiOiAxMTAsCiAgICAidG90YWxfdG9rZW5zIjogNDQ2CiAgfSwKICAic3RhdHMiOiB7fSwKICAic3lzdGVtX2ZpbmdlcnByaW50IjogIm9wZW5haS9ncHQtb3NzLTIwYiIKfQ==
-  recorded_at: Mon, 08 Sep 2025 14:03:05 GMT
+        ewogICJpZCI6ICJjaGF0Y21wbC1zYzhjdmZ0cnhyc3VvNHZ1bzEwZGYiLAogICJvYmplY3QiOiAiY2hhdC5jb21wbGV0aW9uIiwKICAiY3JlYXRlZCI6IDE3NTk3NDk2MDUsCiAgIm1vZGVsIjogIm9wZW5haS9ncHQtb3NzLTIwYiIsCiAgImNob2ljZXMiOiBbCiAgICB7CiAgICAgICJpbmRleCI6IDAsCiAgICAgICJtZXNzYWdlIjogewogICAgICAgICJyb2xlIjogImFzc2lzdGFudCIsCiAgICAgICAgImNvbnRlbnQiOiAie1xuICBcImNvbXBhbnlcIjogXCJUZWNoTm92YSBTb2x1dGlvbnNcIixcbiAgXCJwb3NpdGlvblwiOiBcIlJ1YnkgRGV2ZWxvcGVyXCIsXG4gIFwic2NvcmVcIjogNC41LFxuICBcIm5vdGVzXCI6IFwiVGhlIHBvc3RpbmcgZXhwbGljaXRseSBzZWVrcyBhIFJ1YnkgZGV2ZWxvcGVyLCBhbGlnbmluZyB3ZWxsIHdpdGggdGhlIHVzZXLigJlzIHByZWZlcmVuY2UgZm9yIFJ1YnkuIEl0IG1lbnRpb25zIFJhaWxzIGFuZCBTUUwsIHdoaWNoIGFyZSBjb21tb24gaW4gUnVieSByb2xlcywgYnV0IGxhY2tzIGRldGFpbHMgb24gb3RoZXIgcHJlZmVyZW5jZXMgb3IgcmVxdWlyZW1lbnRzIHRoYXQgbWlnaHQgZnVydGhlciByZWZpbmUgcmVsZXZhbmNlLlwiXG59IiwKICAgICAgICAicmVhc29uaW5nIjogIldlIG5lZWQgdG8gcGFyc2UgY29tcGFueTogVGVjaE5vdmEgU29sdXRpb25zLiBQb3NpdGlvbjogUnVieSBEZXZlbG9wZXIuIFNjb3JlPyBVc2VyIGxpa2VzIFJ1YnkuIFNvIHJlbGV2YW50LiBQcm9iYWJseSA0LjUuIFByb3ZpZGUgbm90ZXMuIiwKICAgICAgICAidG9vbF9jYWxscyI6IFtdCiAgICAgIH0sCiAgICAgICJsb2dwcm9icyI6IG51bGwsCiAgICAgICJmaW5pc2hfcmVhc29uIjogInN0b3AiCiAgICB9CiAgXSwKICAidXNhZ2UiOiB7CiAgICAicHJvbXB0X3Rva2VucyI6IDMzNiwKICAgICJjb21wbGV0aW9uX3Rva2VucyI6IDEyMSwKICAgICJ0b3RhbF90b2tlbnMiOiA0NTcKICB9LAogICJzdGF0cyI6IHt9LAogICJzeXN0ZW1fZmluZ2VycHJpbnQiOiAib3BlbmFpL2dwdC1vc3MtMjBiIgp9
+  recorded_at: Mon, 06 Oct 2025 11:20:09 GMT
 - request:
     method: post
     uri: http://127.0.0.1:1234/v1/chat/completions
@@ -80,7 +80,7 @@ http_interactions:
         and writing clean, efficient code. Experience with Phoenix and Ecto is a plus.\n"}],"temperature":0.0}'
     headers:
       User-Agent:
-      - Faraday v2.13.4
+      - Faraday v2.14.0
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -99,9 +99,9 @@ http_interactions:
       Content-Length:
       - '925'
       Etag:
-      - W/"39d-chtULnyhDNYbjxiJ/9ZDSzzvExM"
+      - W/"39d-zeYs53j5uH6NyVDOFYm5tHIUGww"
       Date:
-      - Mon, 08 Sep 2025 14:03:08 GMT
+      - Mon, 06 Oct 2025 11:20:12 GMT
       Connection:
       - keep-alive
       Keep-Alive:
@@ -109,6 +109,6 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        ewogICJpZCI6ICJjaGF0Y21wbC0xYjZuZ2E3ajhma29kbndodmprMTQiLAogICJvYmplY3QiOiAiY2hhdC5jb21wbGV0aW9uIiwKICAiY3JlYXRlZCI6IDE3NTczNDAxODUsCiAgIm1vZGVsIjogIm9wZW5haS9ncHQtb3NzLTIwYiIsCiAgImNob2ljZXMiOiBbCiAgICB7CiAgICAgICJpbmRleCI6IDAsCiAgICAgICJtZXNzYWdlIjogewogICAgICAgICJyb2xlIjogImFzc2lzdGFudCIsCiAgICAgICAgImNvbnRlbnQiOiAie1xuICBcImNvbXBhbnlcIjogXCJUZWNoTm92YSBTb2x1dGlvbnNcIixcbiAgXCJwb3NpdGlvblwiOiBcIkVsaXhpciBEZXZlbG9wZXJcIixcbiAgXCJzY29yZVwiOiAwLjAsXG4gIFwibm90ZXNcIjogXCJUaGUgcm9sZSBmb2N1c2VzIG9uIEVsaXhpciwgUGhvZW5peCwgYW5kIEVjdG8sIHdoaWxlIHRoZSB1c2Vy4oCZcyBzdGF0ZWQgcHJlZmVyZW5jZSBpcyBSdWJ5LiBObyBvdmVybGFwIGluIHRlY2hub2xvZ3kgc3RhY2sgb3IgZXhwZXJpZW5jZS5cIlxufSIsCiAgICAgICAgInJlYXNvbmluZyI6ICJOZWVkIHRvIHBhcnNlIGNvbXBhbnkgVGVjaE5vdmEgU29sdXRpb25zLCBwb3NpdGlvbiBFbGl4aXIgRGV2ZWxvcGVyLiBTY29yZT8gVXNlciBsaWtlcyBSdWJ5IG9ubHkuIFNvIG5vdCByZWxldmFudC4gU2NvcmUgMC4wLiBQcm92aWRlIG5vdGVzLiIsCiAgICAgICAgInRvb2xfY2FsbHMiOiBbXQogICAgICB9LAogICAgICAibG9ncHJvYnMiOiBudWxsLAogICAgICAiZmluaXNoX3JlYXNvbiI6ICJzdG9wIgogICAgfQogIF0sCiAgInVzYWdlIjogewogICAgInByb21wdF90b2tlbnMiOiAzMzUsCiAgICAiY29tcGxldGlvbl90b2tlbnMiOiAxMDcsCiAgICAidG90YWxfdG9rZW5zIjogNDQyCiAgfSwKICAic3RhdHMiOiB7fSwKICAic3lzdGVtX2ZpbmdlcnByaW50IjogIm9wZW5haS9ncHQtb3NzLTIwYiIKfQ==
-  recorded_at: Mon, 08 Sep 2025 14:03:08 GMT
+        ewogICJpZCI6ICJjaGF0Y21wbC1vb2xudHQ3ZHB3N2F2YTN0eGttMjkiLAogICJvYmplY3QiOiAiY2hhdC5jb21wbGV0aW9uIiwKICAiY3JlYXRlZCI6IDE3NTk3NDk2MDksCiAgIm1vZGVsIjogIm9wZW5haS9ncHQtb3NzLTIwYiIsCiAgImNob2ljZXMiOiBbCiAgICB7CiAgICAgICJpbmRleCI6IDAsCiAgICAgICJtZXNzYWdlIjogewogICAgICAgICJyb2xlIjogImFzc2lzdGFudCIsCiAgICAgICAgImNvbnRlbnQiOiAie1xuICBcImNvbXBhbnlcIjogXCJUZWNoTm92YSBTb2x1dGlvbnNcIixcbiAgXCJwb3NpdGlvblwiOiBcIkVsaXhpciBEZXZlbG9wZXJcIixcbiAgXCJzY29yZVwiOiAwLjAsXG4gIFwibm90ZXNcIjogXCJUaGUgcm9sZSBmb2N1c2VzIG9uIEVsaXhpciwgUGhvZW5peCwgYW5kIEVjdG8sIHdoaWxlIHRoZSB1c2Vy4oCZcyBzdGF0ZWQgcHJlZmVyZW5jZSBpcyBSdWJ5LiBObyBvdmVybGFwIGluIHRlY2hub2xvZ3kgc3RhY2sgb3IgZXhwZXJpZW5jZS5cIlxufSIsCiAgICAgICAgInJlYXNvbmluZyI6ICJOZWVkIHRvIHBhcnNlIGNvbXBhbnkgVGVjaE5vdmEgU29sdXRpb25zLCBwb3NpdGlvbiBFbGl4aXIgRGV2ZWxvcGVyLiBTY29yZT8gVXNlciBsaWtlcyBSdWJ5IG9ubHkuIFNvIG5vdCByZWxldmFudC4gU2NvcmUgMC4wLiBQcm92aWRlIG5vdGVzLiIsCiAgICAgICAgInRvb2xfY2FsbHMiOiBbXQogICAgICB9LAogICAgICAibG9ncHJvYnMiOiBudWxsLAogICAgICAiZmluaXNoX3JlYXNvbiI6ICJzdG9wIgogICAgfQogIF0sCiAgInVzYWdlIjogewogICAgInByb21wdF90b2tlbnMiOiAzMzUsCiAgICAiY29tcGxldGlvbl90b2tlbnMiOiAxMDcsCiAgICAidG90YWxfdG9rZW5zIjogNDQyCiAgfSwKICAic3RhdHMiOiB7fSwKICAic3lzdGVtX2ZpbmdlcnByaW50IjogIm9wZW5haS9ncHQtb3NzLTIwYiIKfQ==
+  recorded_at: Mon, 06 Oct 2025 11:20:12 GMT
 recorded_with: VCR 6.3.1

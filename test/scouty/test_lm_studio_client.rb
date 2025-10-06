@@ -35,7 +35,7 @@ module Scouty
           client.ask("Say something!", temperature: 1.23)
         end
 
-      assert_equal "Hello there! How’s your day going?", reply
+      assert_equal "Sure thing! 🌟 How can I help you today?", reply
     end
   end
 end
