@@ -83,13 +83,11 @@ scrapers:
   #     - https://example.com/jobs/rails-developer
 
 
-# LM Studio
-# Configures access to a running LM Studio instance. Can be potentially
-# compatible with OpenAI API–like providers (e.g., https://ollama.com), but it
-# was not tested.
-lm_studio:
-  url: "http://127.0.0.1:1234"
-  model: "openai/gpt-oss-20b"
+# Ollama
+# Configures access to a running Ollama instance.
+ollama:
+  url: "http://localhost:11434"
+  model: "gpt-oss:20b"
 
 
 # Webcache

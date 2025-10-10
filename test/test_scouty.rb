@@ -25,9 +25,9 @@ class TestScouty < Minitest::Test
           report: #{File.join(tmpdir, "report.html")}
           suppressed: true
 
-        lm_studio:
-          url: "http://127.0.0.1:1234"
-          model: "openai/gpt-oss-20b"
+        ollama:
+          url: "http://localhost:11434"
+          model: "gpt-oss:20b"
 
         profile: |
           I like Ruby
@@ -75,18 +75,18 @@ class TestScouty < Minitest::Test
     assert_equal "Ruby Developer", review_a.position
     assert_in_delta(4.5, review_a.score)
     assert_equal <<~TEXT.split.join(" "), review_a.notes
-      The posting explicitly seeks a Ruby developer, aligning well with the
-      user’s preference for Ruby. It mentions Rails and SQL, which are common in
-      Ruby roles, but lacks details on other preferences or requirements that
-      might further refine relevance.
+      The posting is a Ruby Developer role, directly matching the user’s stated
+      interest in Ruby. It also mentions Rails and SQL, which are common in Ruby
+      development, making it highly relevant.
     TEXT
 
     assert_equal "TechNova Solutions", review_b.company
     assert_equal "Elixir Developer", review_b.position
-    assert_in_delta 0.0, review_b.score
+    assert_in_delta 0.5, review_b.score
     assert_equal <<~TEXT.split.join(" "), review_b.notes
-      The role focuses on Elixir, Phoenix, and Ecto, while the user’s stated
-      preference is Ruby. No overlap in technology stack or experience.
+      The role focuses on Elixir, Phoenix, and Ecto, whereas the user’s stated
+      preference is Ruby. There is no overlap with the user’s skill set,
+      resulting in a low relevance score.
     TEXT
   end
 

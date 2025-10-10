@@ -8,8 +8,8 @@ require "telegram/bot"
 
 require_relative "scouty/assistant"
 require_relative "scouty/config"
-require_relative "scouty/lm_studio_client"
 require_relative "scouty/notifier"
+require_relative "scouty/ollama_client"
 require_relative "scouty/registry"
 require_relative "scouty/report_server"
 require_relative "scouty/retry"
@@ -43,8 +43,8 @@ module Scouty
       @scrapers ||= Scrapers.from_configs(config.scrapers, webcache:)
     end
 
-    def lm_studio
-      @lm_studio ||= LMStudioClient.new(url: config.lm_studio.url, model: config.lm_studio.model)
+    def ollama
+      @ollama ||= OllamaClient.new(url: config.ollama.url, model: config.ollama.model)
     end
 
     def notifier
@@ -54,7 +54,7 @@ module Scouty
     def profile = config.profile
 
     def assistant
-      @assistant ||= Assistant.new(webcache:, llm: lm_studio, profile:)
+      @assistant ||= Assistant.new(webcache:, llm: ollama, profile:)
     end
 
     def scrape

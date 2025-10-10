@@ -2,27 +2,26 @@
 http_interactions:
 - request:
     method: post
-    uri: http://127.0.0.1:1234/v1/chat/completions
+    uri: http://localhost:11434/api/generate
     body:
       encoding: UTF-8
-      string: '{"model":"openai/gpt-oss-20b","n":1,"messages":[{"role":"developer","content":"You
-        are my personal assistant for reviewing job postings and evaluating their
-        relevance to my profile.\n\nFor each provided job posting (which may come
-        as raw, unprocessed data from job boards and could be incomplete or messy),
-        do the following:\n\n1. Analyze the content and assess how well it matches
-        my professional background, preferences, and requirements.\n2. Provide a relevance
-        score from **0.0 (not relevant at all or missing data)** to **5.0 (perfect
-        match)**.\n3. Give a clear, concise explanation for the assigned score.\n\nIf
-        the posting is broken, incomplete, or lacks enough data to evaluate, assign
-        a **score of 0.0** and explain what is missing.\n\n---\n\n## My Professional
-        Profile\n\nI like Ruby\n\n\n---\n\n## Output Format\n\nReturn the analysis
-        as a JSON object in the following structure:\n\n{\n  \"company\": \"<detected
-        company name>\",\n  \"position\": \"<detected job title>\",\n  \"score\":
-        <score from 0.0 to 5.0>,\n  \"notes\": \"<brief explanation of the score>\"\n}\n"},{"role":"user","content":"TechNova
+      string: '{"model":"gpt-oss:20b","system":"You are my personal assistant for
+        reviewing job postings and evaluating their relevance to my profile.\n\nFor
+        each provided job posting (which may come as raw, unprocessed data from job
+        boards and could be incomplete or messy), do the following:\n\n1. Analyze
+        the content and assess how well it matches my professional background, preferences,
+        and requirements.\n2. Provide a relevance score from **0.0 (not relevant at
+        all or missing data)** to **5.0 (perfect match)**.\n3. Give a clear, concise
+        explanation for the assigned score.\n\nIf the posting is broken, incomplete,
+        or lacks enough data to evaluate, assign a **score of 0.0** and explain what
+        is missing.\n\n---\n\n## My Professional Profile\n\nI like Ruby\n\n\n---\n\n##
+        Output Format\n\nReturn the analysis as a JSON object in the following structure:\n\n{\n  \"company\":
+        \"<detected company name>\",\n  \"position\": \"<detected job title>\",\n  \"score\":
+        <score from 0.0 to 5.0>,\n  \"notes\": \"<brief explanation of the score>\"\n}\n","prompt":"TechNova
         Solutions looks for a skilled Ruby Developer! You will work on building and
         maintaining web applications, collaborating with cross-functional teams, and
         writing clean, efficient code. Experience with Ruby on Rails and SQL databases
-        is a plus.\n"}],"temperature":0.0}'
+        is a plus.\n","stream":false,"options":{"temperature":0.0}}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -37,47 +36,38 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      X-Powered-By:
-      - Express
       Content-Type:
       - application/json; charset=utf-8
-      Content-Length:
-      - '1032'
-      Etag:
-      - W/"408-byc80O5EGraC6ToiKafWhpnGE7A"
       Date:
-      - Mon, 06 Oct 2025 11:20:09 GMT
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - timeout=5
+      - Fri, 10 Oct 2025 11:50:58 GMT
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        ewogICJpZCI6ICJjaGF0Y21wbC1zYzhjdmZ0cnhyc3VvNHZ1bzEwZGYiLAogICJvYmplY3QiOiAiY2hhdC5jb21wbGV0aW9uIiwKICAiY3JlYXRlZCI6IDE3NTk3NDk2MDUsCiAgIm1vZGVsIjogIm9wZW5haS9ncHQtb3NzLTIwYiIsCiAgImNob2ljZXMiOiBbCiAgICB7CiAgICAgICJpbmRleCI6IDAsCiAgICAgICJtZXNzYWdlIjogewogICAgICAgICJyb2xlIjogImFzc2lzdGFudCIsCiAgICAgICAgImNvbnRlbnQiOiAie1xuICBcImNvbXBhbnlcIjogXCJUZWNoTm92YSBTb2x1dGlvbnNcIixcbiAgXCJwb3NpdGlvblwiOiBcIlJ1YnkgRGV2ZWxvcGVyXCIsXG4gIFwic2NvcmVcIjogNC41LFxuICBcIm5vdGVzXCI6IFwiVGhlIHBvc3RpbmcgZXhwbGljaXRseSBzZWVrcyBhIFJ1YnkgZGV2ZWxvcGVyLCBhbGlnbmluZyB3ZWxsIHdpdGggdGhlIHVzZXLigJlzIHByZWZlcmVuY2UgZm9yIFJ1YnkuIEl0IG1lbnRpb25zIFJhaWxzIGFuZCBTUUwsIHdoaWNoIGFyZSBjb21tb24gaW4gUnVieSByb2xlcywgYnV0IGxhY2tzIGRldGFpbHMgb24gb3RoZXIgcHJlZmVyZW5jZXMgb3IgcmVxdWlyZW1lbnRzIHRoYXQgbWlnaHQgZnVydGhlciByZWZpbmUgcmVsZXZhbmNlLlwiXG59IiwKICAgICAgICAicmVhc29uaW5nIjogIldlIG5lZWQgdG8gcGFyc2UgY29tcGFueTogVGVjaE5vdmEgU29sdXRpb25zLiBQb3NpdGlvbjogUnVieSBEZXZlbG9wZXIuIFNjb3JlPyBVc2VyIGxpa2VzIFJ1YnkuIFNvIHJlbGV2YW50LiBQcm9iYWJseSA0LjUuIFByb3ZpZGUgbm90ZXMuIiwKICAgICAgICAidG9vbF9jYWxscyI6IFtdCiAgICAgIH0sCiAgICAgICJsb2dwcm9icyI6IG51bGwsCiAgICAgICJmaW5pc2hfcmVhc29uIjogInN0b3AiCiAgICB9CiAgXSwKICAidXNhZ2UiOiB7CiAgICAicHJvbXB0X3Rva2VucyI6IDMzNiwKICAgICJjb21wbGV0aW9uX3Rva2VucyI6IDEyMSwKICAgICJ0b3RhbF90b2tlbnMiOiA0NTcKICB9LAogICJzdGF0cyI6IHt9LAogICJzeXN0ZW1fZmluZ2VycHJpbnQiOiAib3BlbmFpL2dwdC1vc3MtMjBiIgp9
-  recorded_at: Mon, 06 Oct 2025 11:20:09 GMT
+        eyJtb2RlbCI6ImdwdC1vc3M6MjBiIiwiY3JlYXRlZF9hdCI6IjIwMjUtMTAtMTBUMTE6NTA6NTguMjQ5MDMzWiIsInJlc3BvbnNlIjoie1xuICBcImNvbXBhbnlcIjogXCJUZWNoTm92YSBTb2x1dGlvbnNcIixcbiAgXCJwb3NpdGlvblwiOiBcIlJ1YnkgRGV2ZWxvcGVyXCIsXG4gIFwic2NvcmVcIjogNC41LFxuICBcIm5vdGVzXCI6IFwiVGhlIHBvc3RpbmcgaXMgYSBSdWJ5IERldmVsb3BlciByb2xlLCBkaXJlY3RseSBtYXRjaGluZyB0aGUgdXNlcuKAmXMgc3RhdGVkIGludGVyZXN0IGluIFJ1YnkuIEl0IGFsc28gbWVudGlvbnMgUmFpbHMgYW5kIFNRTCwgd2hpY2ggYXJlIGNvbW1vbiBpbiBSdWJ5IGRldmVsb3BtZW50LCBtYWtpbmcgaXQgaGlnaGx5IHJlbGV2YW50LlwiXG59IiwidGhpbmtpbmciOiJXZSBuZWVkIHRvIHBhcnNlIGpvYiBwb3N0aW5nLiBDb21wYW55OiBUZWNoTm92YSBTb2x1dGlvbnMuIFBvc2l0aW9uOiBSdWJ5IERldmVsb3Blci4gU2NvcmU6IFdlIGhhdmUgcHJvZmlsZTogXCJJIGxpa2UgUnVieVwiLiBTbyB0aGV5IGxpa2UgUnVieS4gVGhlIHBvc3RpbmcgaXMgZm9yIFJ1YnkgRGV2ZWxvcGVyLiBTbyBoaWdoIHJlbGV2YW5jZS4gQnV0IHdlIGRvbid0IGtub3cgb3RoZXIgcHJlZmVyZW5jZXMuIEJ1dCB3ZSBjYW4gZ2l2ZSBoaWdoIHNjb3JlLCBtYXliZSA0LjUuIFByb3ZpZGUgZXhwbGFuYXRpb24uIiwiZG9uZSI6dHJ1ZSwiZG9uZV9yZWFzb24iOiJzdG9wIiwiY29udGV4dCI6WzIwMDAwNiwxNzM2MCwyMDAwMDgsMzU3NSw1NTMsMTc1NTQsMTYyMDE2LDExLDI2MSw0NDEwLDY0MzksMjM1OSwyMjIwMyw2NTYsNzc4OCwxNzUyNyw1NTgsODc0NDcsMTAwNTk0LDI1LDIyMCwxMzIzLDE5LDEyLDMyMTgsMTk4LDY1NzYsMzUyMSwyNSwyMjAsMTMyMywyMCwxMiw3MDIsMTIsNzAyLDI3OSwzMDM3NywyODksMjUsMTQwOTMsMjc5LDIsMTM4ODgsMTg0MDMsMjUsODQ1MCwxMSw0OTE1OSwxMSwxNzIxLDEzLDIxMDMwLDI4MDQsNDEzLDczNjAsMzk1LDE3NTMsMzE3NiwxMywyMDAwMDcsMjAwMDA2LDc3OTQ0LDIwMDAwOCwyNzksMiw2ODQwNiwyNzksMzU3NSw1NTMsOTIyLDM4MzIsMjkxODYsMzk1LDQ4MzQwLDMzNDksMTAyNzU2LDMyNiw1NTY1NiwxMDQzLDY0MTk2LDMxNiw5MjIsODg1NSwzNjQsMjY1MywyNDU0LDUxODEsMzM0OSwyMDg2OSwzNTAsMTM5ODAsMTM0MCwzMDYzLDQ3MiwxMTQyOCwxMSw1MzcsNjUzNzQsMTIzOCw1OTEsMzM0OSwyNzUzMSwzMjYsMjAyMyw0MTMsNjA1OTIsNTAzLDczMjUxLDkzNiw2MjEsMjkwLDM5OTIsMTQwMiwxNiwxMywxNDUyOTAsMjkwLDMxMDAsMzI2LDEwMjI0LDE0OTUsMTc3NSw0ODAsMTUyNDgsOTIyLDU5MzcsNjM1NywxMSwyNjQ3MywxMSwzMjYsOTE0MCw1NTgsMTcsMTMsNTE0NDEsMjYxLDY0MTk2LDg0MjksNTkxLDYyNDAsMTUsMTMsMTUsMzUwLDI4NzgsMTIzMzEsNTQwLDcyMiw1MDMsMTI0ODYsMTIzOCw4MDA2NiwzMTYsNjI0MCwyMCwxMywxNSwzNTAsOTc1MzQsMzk4MSw4MDA2Niw1NTgsMTgsMTMsMjcyMDQsMjYxLDUzNjQsMTEsODI0NjMsMzA1NDcsMzk1LDI5MCwyMTQ4Miw4NDI5LDM2NCwzMzM1LDI5MCwyMDg2OSwzODIsMTcxNjIsMTEsNjA1OTIsMTEsNTAzLDcxMzU3LDQ5NTEsMTIzOCwzMTYsMjE2NDYsMTEsMTQ5NzUsMjYxLDYyNDAsMjEyMDAsMzI4LDIyMCwxNSwxMywxNSw0MTAsMzI2LDE2NjQ0LDE0MTIsMzgyLDEyNDg2LDM2NCwxMDM5OTUsODc3LDM2NzMsMjE3NjgsMTk4NDUsMjc5LDQwLDEyOTksNTYyMDEsMjQ5OSwxMDM5OTUsODc3LDE4MzE1LDI2MTkzLDI3OSw4MTkxLDI5MCw4NDUwLDQ3MiwyNjEsODIwNSwyODE3LDMwNiwyOTAsMzk5Miw4ODY2LDE0MDIsNzQ1LDIyMCwzOTIsMTMwMDMsMTI0Myw4ODE3LDEwMTM2LDQ4MTA1LDMxNzUsMTMwOCw3MzUzOSwyMjAsMzkyLDQ1MDQsMTI0Myw4ODE3LDEwMTM2LDQ4MTA1LDMzNDksMzgwOSw3MzUzOSwyMjAsMzkyLDIxMjAwLDEyNDMsNDY0LDIxMjAwLDU5MSwyMjAsMTUsMTMsMTUsMzE2LDIyMCwyMCwxMywxNSwyMzg0NCwyMjAsMzkyLDM4NzA1LDEyNDMsODgxNywxNDE2NCwzMDU0NywzMjgsMjkwLDg0MjksNDgxMTksNzM5LDIwMDAwNywyMDAwMDYsMTQyOCwyMDAwMDgsMjYyMjAsOTg1NzUsMjcwMjEsODIyNCwzOTUsMjYxLDI5NTUxLDU2MjAxLDQxMDUyLDAsMTYwOCw3MzgsMTEwMSw0MDIsNjI4MiwzMjYsMjY1MTMsMTg4MCw5MzkxLDExLDEwMjc1Miw0ODMsODA4OCwxMzc3MzIsMTEyNzMsMTEsMzI2LDUyODEsNDY4NywxMSwxMjQzMCwzNDkwLDEzLDIzMDIzLDQ4Myw1NjIwMSw0MDIsODc2OTgsMzI2LDEzMDMzLDQ4NjExLDM4MiwyNjEsMjkzMiw1NTgsMjAwMDA3LDIwMDAwNiwxNzM3ODEsMjAwMDA1LDM1NjQ0LDIwMDAwOCwyMTY3LDEzMDksMzE2LDg0MjAsMzM0OSwyMDg2OSwxMyw5NzA5LDI1LDE5MzYzLDk4NTc1LDI3MDIxLDEzLDIxODI5LDI1LDU2MjAxLDQxMDUyLDEzLDMwNzMxLDI1LDE0MTYsNjc5LDg4NTUsMjUsMzkyLDQwLDEyOTksNTYyMDEsNDA1MCwyNjMyLDEwMjMsMTI5OSw1NjIwMSwxMyw2MjMsMjA4NjksMzgyLDM5NSw1NjIwMSw0MTA1MiwxMywyNjMyLDE5MzIsNjQxOTYsMTMsMzA3Miw1ODEsNDEyOCwxNzYxLDEyNzMsMjY0NzMsMTMsMzA3Miw1ODEsNjY1LDM2NDQsMTkzMiw4NDI5LDExLDEwMTEyLDIyMCwxOSwxMywyMCwxMyw1MTQ0MSwzMDU0NywxMywyMDAwMDcsMjAwMDA2LDE3Mzc4MSwyMDAwMDUsMTcxOTYsMjAwMDA4LDc0NSwyMjAsMzkyLDEzMDAzLDEyNDMsMzkyLDI2MjIwLDk4NTc1LDI3MDIxLDExNTAsMjIwLDM5Miw0NTA0LDEyNDMsMzkyLDEzNDA0Nyw0MTA1MiwxMTUwLDIyMCwzOTIsMjEyMDAsMTI0MywyMjAsMTksMTMsMjAsNDEyLDIyMCwzOTIsMzg3MDUsMTI0MywzOTIsOTc2LDIwODY5LDM4MiwyNjEsNTYyMDEsNDEwNTIsNTQzMCwxMSw4NTE2LDIwMjM4LDI5MCwxODI1LDgwMiwxNjk2OSwzNDI1LDMwNiw1NjIwMSwxMywxMjI1LDEyMTcsNjYzOTYsODc2OTgsMzI2LDEzMDMzLDExLDExMTgsNTUzLDUzNTUsMzA2LDU2MjAxLDUyNjksMTEsNDEzNyw0ODAsODkxNiwxMjMzMSwxNDM5Niw5Ml0sInRvdGFsX2R1cmF0aW9uIjo1MDYxNjI4MzMzLCJsb2FkX2R1cmF0aW9uIjo2NjYxMDAwMCwicHJvbXB0X2V2YWxfY291bnQiOjMzNywicHJvbXB0X2V2YWxfZHVyYXRpb24iOjMyMzY2MzUwMCwiZXZhbF9jb3VudCI6MTQ4LCJldmFsX2R1cmF0aW9uIjo0NjcwOTAwNTAwfQ==
+  recorded_at: Fri, 10 Oct 2025 11:50:58 GMT
 - request:
     method: post
-    uri: http://127.0.0.1:1234/v1/chat/completions
+    uri: http://localhost:11434/api/generate
     body:
       encoding: UTF-8
-      string: '{"model":"openai/gpt-oss-20b","n":1,"messages":[{"role":"developer","content":"You
-        are my personal assistant for reviewing job postings and evaluating their
-        relevance to my profile.\n\nFor each provided job posting (which may come
-        as raw, unprocessed data from job boards and could be incomplete or messy),
-        do the following:\n\n1. Analyze the content and assess how well it matches
-        my professional background, preferences, and requirements.\n2. Provide a relevance
-        score from **0.0 (not relevant at all or missing data)** to **5.0 (perfect
-        match)**.\n3. Give a clear, concise explanation for the assigned score.\n\nIf
-        the posting is broken, incomplete, or lacks enough data to evaluate, assign
-        a **score of 0.0** and explain what is missing.\n\n---\n\n## My Professional
-        Profile\n\nI like Ruby\n\n\n---\n\n## Output Format\n\nReturn the analysis
-        as a JSON object in the following structure:\n\n{\n  \"company\": \"<detected
-        company name>\",\n  \"position\": \"<detected job title>\",\n  \"score\":
-        <score from 0.0 to 5.0>,\n  \"notes\": \"<brief explanation of the score>\"\n}\n"},{"role":"user","content":"TechNova
+      string: '{"model":"gpt-oss:20b","system":"You are my personal assistant for
+        reviewing job postings and evaluating their relevance to my profile.\n\nFor
+        each provided job posting (which may come as raw, unprocessed data from job
+        boards and could be incomplete or messy), do the following:\n\n1. Analyze
+        the content and assess how well it matches my professional background, preferences,
+        and requirements.\n2. Provide a relevance score from **0.0 (not relevant at
+        all or missing data)** to **5.0 (perfect match)**.\n3. Give a clear, concise
+        explanation for the assigned score.\n\nIf the posting is broken, incomplete,
+        or lacks enough data to evaluate, assign a **score of 0.0** and explain what
+        is missing.\n\n---\n\n## My Professional Profile\n\nI like Ruby\n\n\n---\n\n##
+        Output Format\n\nReturn the analysis as a JSON object in the following structure:\n\n{\n  \"company\":
+        \"<detected company name>\",\n  \"position\": \"<detected job title>\",\n  \"score\":
+        <score from 0.0 to 5.0>,\n  \"notes\": \"<brief explanation of the score>\"\n}\n","prompt":"TechNova
         Solutions looks for a skilled Elixir Developer! You will work on building
         and maintaining web applications, collaborating with cross-functional teams,
-        and writing clean, efficient code. Experience with Phoenix and Ecto is a plus.\n"}],"temperature":0.0}'
+        and writing clean, efficient code. Experience with Phoenix and Ecto is a plus.\n","stream":false,"options":{"temperature":0.0}}'
     headers:
       User-Agent:
       - Faraday v2.14.0
@@ -92,23 +82,15 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      X-Powered-By:
-      - Express
       Content-Type:
       - application/json; charset=utf-8
-      Content-Length:
-      - '925'
-      Etag:
-      - W/"39d-zeYs53j5uH6NyVDOFYm5tHIUGww"
       Date:
-      - Mon, 06 Oct 2025 11:20:12 GMT
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - timeout=5
+      - Fri, 10 Oct 2025 11:51:06 GMT
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        ewogICJpZCI6ICJjaGF0Y21wbC1vb2xudHQ3ZHB3N2F2YTN0eGttMjkiLAogICJvYmplY3QiOiAiY2hhdC5jb21wbGV0aW9uIiwKICAiY3JlYXRlZCI6IDE3NTk3NDk2MDksCiAgIm1vZGVsIjogIm9wZW5haS9ncHQtb3NzLTIwYiIsCiAgImNob2ljZXMiOiBbCiAgICB7CiAgICAgICJpbmRleCI6IDAsCiAgICAgICJtZXNzYWdlIjogewogICAgICAgICJyb2xlIjogImFzc2lzdGFudCIsCiAgICAgICAgImNvbnRlbnQiOiAie1xuICBcImNvbXBhbnlcIjogXCJUZWNoTm92YSBTb2x1dGlvbnNcIixcbiAgXCJwb3NpdGlvblwiOiBcIkVsaXhpciBEZXZlbG9wZXJcIixcbiAgXCJzY29yZVwiOiAwLjAsXG4gIFwibm90ZXNcIjogXCJUaGUgcm9sZSBmb2N1c2VzIG9uIEVsaXhpciwgUGhvZW5peCwgYW5kIEVjdG8sIHdoaWxlIHRoZSB1c2Vy4oCZcyBzdGF0ZWQgcHJlZmVyZW5jZSBpcyBSdWJ5LiBObyBvdmVybGFwIGluIHRlY2hub2xvZ3kgc3RhY2sgb3IgZXhwZXJpZW5jZS5cIlxufSIsCiAgICAgICAgInJlYXNvbmluZyI6ICJOZWVkIHRvIHBhcnNlIGNvbXBhbnkgVGVjaE5vdmEgU29sdXRpb25zLCBwb3NpdGlvbiBFbGl4aXIgRGV2ZWxvcGVyLiBTY29yZT8gVXNlciBsaWtlcyBSdWJ5IG9ubHkuIFNvIG5vdCByZWxldmFudC4gU2NvcmUgMC4wLiBQcm92aWRlIG5vdGVzLiIsCiAgICAgICAgInRvb2xfY2FsbHMiOiBbXQogICAgICB9LAogICAgICAibG9ncHJvYnMiOiBudWxsLAogICAgICAiZmluaXNoX3JlYXNvbiI6ICJzdG9wIgogICAgfQogIF0sCiAgInVzYWdlIjogewogICAgInByb21wdF90b2tlbnMiOiAzMzUsCiAgICAiY29tcGxldGlvbl90b2tlbnMiOiAxMDcsCiAgICAidG90YWxfdG9rZW5zIjogNDQyCiAgfSwKICAic3RhdHMiOiB7fSwKICAic3lzdGVtX2ZpbmdlcnByaW50IjogIm9wZW5haS9ncHQtb3NzLTIwYiIKfQ==
-  recorded_at: Mon, 06 Oct 2025 11:20:12 GMT
+        eyJtb2RlbCI6ImdwdC1vc3M6MjBiIiwiY3JlYXRlZF9hdCI6IjIwMjUtMTAtMTBUMTE6NTE6MDYuNjQ2MTgxWiIsInJlc3BvbnNlIjoie1xuICBcImNvbXBhbnlcIjogXCJUZWNoTm92YSBTb2x1dGlvbnNcIixcbiAgXCJwb3NpdGlvblwiOiBcIkVsaXhpciBEZXZlbG9wZXJcIixcbiAgXCJzY29yZVwiOiAwLjUsXG4gIFwibm90ZXNcIjogXCJUaGUgcm9sZSBmb2N1c2VzIG9uIEVsaXhpciwgUGhvZW5peCwgYW5kIEVjdG8sIHdoZXJlYXMgdGhlIHVzZXLigJlzIHN0YXRlZCBwcmVmZXJlbmNlIGlzIFJ1YnkuIFRoZXJlIGlzIG5vIG92ZXJsYXAgd2l0aCB0aGUgdXNlcuKAmXMgc2tpbGwgc2V0LCByZXN1bHRpbmcgaW4gYSBsb3cgcmVsZXZhbmNlIHNjb3JlLlwiXG59IiwidGhpbmtpbmciOiJXZSBuZWVkIHRvIHBhcnNlIGpvYiBwb3N0aW5nOiBjb21wYW55OiBUZWNoTm92YSBTb2x1dGlvbnMuIFBvc2l0aW9uOiBFbGl4aXIgRGV2ZWxvcGVyLiBTY29yZTogd2UgbmVlZCB0byBjb21wYXJlIHRvIHVzZXIncyBwcm9maWxlOiBcIkkgbGlrZSBSdWJ5XCIuIFNvIHVzZXIgbGlrZXMgUnVieSwgYnV0IGpvYiBpcyBFbGl4aXIuIE5vdCBhIG1hdGNoLiBTY29yZSBsb3cuIE1heWJlIDAuNT8gQnV0IHVzZXIgb25seSBsaWtlcyBSdWJ5LCBubyBtZW50aW9uIG9mIEVsaXhpci4gU28gbm90IHJlbGV2YW50LiBTY29yZSAwLjU/IEJ1dCBtYXliZSAwLjAgYmVjYXVzZSBubyBSdWJ5LiBUaGUgaW5zdHJ1Y3Rpb25zOiBcIklmIHRoZSBwb3N0aW5nIGlzIGJyb2tlbiwgaW5jb21wbGV0ZSwgb3IgbGFja3MgZW5vdWdoIGRhdGEgdG8gZXZhbHVhdGUsIGFzc2lnbiBhIHNjb3JlIG9mIDAuMCBhbmQgZXhwbGFpbiB3aGF0IGlzIG1pc3NpbmcuXCIgQnV0IHdlIGhhdmUgZW5vdWdoIGRhdGEuIEJ1dCBpdCdzIG5vdCByZWxldmFudC4gU28gd2UgY2FuIGdpdmUgYSBsb3cgc2NvcmUgbGlrZSAwLjUuIFByb3ZpZGUgZXhwbGFuYXRpb246IHVzZXIgbGlrZXMgUnVieSwgam9iIHJlcXVpcmVzIEVsaXhpci4gU28gbm90IHJlbGV2YW50LiBTY29yZSAwLjUuIFByb3ZpZGUgSlNPTi4iLCJkb25lIjp0cnVlLCJkb25lX3JlYXNvbiI6InN0b3AiLCJjb250ZXh0IjpbMjAwMDA2LDE3MzYwLDIwMDAwOCwzNTc1LDU1MywxNzU1NCwxNjIwMTYsMTEsMjYxLDQ0MTAsNjQzOSwyMzU5LDIyMjAzLDY1Niw3Nzg4LDE3NTI3LDU1OCw4NzQ0NywxMDA1OTQsMjUsMjIwLDEzMjMsMTksMTIsMzIxOCwxOTgsNjU3NiwzNTIxLDI1LDIyMCwxMzIzLDIwLDEyLDcwMiwxMiw3MDIsMjc5LDMwMzc3LDI4OSwyNSwxNDA5MywyNzksMiwxMzg4OCwxODQwMywyNSw4NDUwLDExLDQ5MTU5LDExLDE3MjEsMTMsMjEwMzAsMjgwNCw0MTMsNzM2MCwzOTUsMTc1MywzMTc2LDEzLDIwMDAwNywyMDAwMDYsNzc5NDQsMjAwMDA4LDI3OSwyLDY4NDA2LDI3OSwzNTc1LDU1Myw5MjIsMzgzMiwyOTE4NiwzOTUsNDgzNDAsMzM0OSwxMDI3NTYsMzI2LDU1NjU2LDEwNDMsNjQxOTYsMzE2LDkyMiw4ODU1LDM2NCwyNjUzLDI0NTQsNTE4MSwzMzQ5LDIwODY5LDM1MCwxMzk4MCwxMzQwLDMwNjMsNDcyLDExNDI4LDExLDUzNyw2NTM3NCwxMjM4LDU5MSwzMzQ5LDI3NTMxLDMyNiwyMDIzLDQxMyw2MDU5Miw1MDMsNzMyNTEsOTM2LDYyMSwyOTAsMzk5MiwxNDAyLDE2LDEzLDE0NTI5MCwyOTAsMzEwMCwzMjYsMTAyMjQsMTQ5NSwxNzc1LDQ4MCwxNTI0OCw5MjIsNTkzNyw2MzU3LDExLDI2NDczLDExLDMyNiw5MTQwLDU1OCwxNywxMyw1MTQ0MSwyNjEsNjQxOTYsODQyOSw1OTEsNjI0MCwxNSwxMywxNSwzNTAsMjg3OCwxMjMzMSw1NDAsNzIyLDUwMywxMjQ4NiwxMjM4LDgwMDY2LDMxNiw2MjQwLDIwLDEzLDE1LDM1MCw5NzUzNCwzOTgxLDgwMDY2LDU1OCwxOCwxMywyNzIwNCwyNjEsNTM2NCwxMSw4MjQ2MywzMDU0NywzOTUsMjkwLDIxNDgyLDg0MjksMzY0LDMzMzUsMjkwLDIwODY5LDM4MiwxNzE2MiwxMSw2MDU5MiwxMSw1MDMsNzEzNTcsNDk1MSwxMjM4LDMxNiwyMTY0NiwxMSwxNDk3NSwyNjEsNjI0MCwyMTIwMCwzMjgsMjIwLDE1LDEzLDE1LDQxMCwzMjYsMTY2NDQsMTQxMiwzODIsMTI0ODYsMzY0LDEwMzk5NSw4NzcsMzY3MywyMTc2OCwxOTg0NSwyNzksNDAsMTI5OSw1NjIwMSwyNDk5LDEwMzk5NSw4NzcsMTgzMTUsMjYxOTMsMjc5LDgxOTEsMjkwLDg0NTAsNDcyLDI2MSw4MjA1LDI4MTcsMzA2LDI5MCwzOTkyLDg4NjYsMTQwMiw3NDUsMjIwLDM5MiwxMzAwMywxMjQzLDg4MTcsMTAxMzYsNDgxMDUsMzE3NSwxMzA4LDczNTM5LDIyMCwzOTIsNDUwNCwxMjQzLDg4MTcsMTAxMzYsNDgxMDUsMzM0OSwzODA5LDczNTM5LDIyMCwzOTIsMjEyMDAsMTI0Myw0NjQsMjEyMDAsNTkxLDIyMCwxNSwxMywxNSwzMTYsMjIwLDIwLDEzLDE1LDIzODQ0LDIyMCwzOTIsMzg3MDUsMTI0Myw4ODE3LDE0MTY0LDMwNTQ3LDMyOCwyOTAsODQyOSw0ODExOSw3MzksMjAwMDA3LDIwMDAwNiwxNDI4LDIwMDAwOCwyNjIyMCw5ODU3NSwyNzAyMSw4MjI0LDM5NSwyNjEsMjk1NTEsMzI0MSwxMjEzMzgsNDEwNTIsMCwxNjA4LDczOCwxMTAxLDQwMiw2MjgyLDMyNiwyNjUxMywxODgwLDkzOTEsMTEsMTAyNzUyLDQ4Myw4MDg4LDEzNzczMiwxMTI3MywxMSwzMjYsNTI4MSw0Njg3LDExLDEyNDMwLDM0OTAsMTMsMjMwMjMsNDgzLDM3NzM5LDMyNiw0NTcsMTkxODEzLDM4MiwyNjEsMjkzMiw1NTgsMjAwMDA3LDIwMDAwNiwxNzM3ODEsMjAwMDA1LDM1NjQ0LDIwMDAwOCwyMTY3LDEzMDksMzE2LDg0MjAsMzM0OSwyMDg2OSwyNSwzMTc1LDI1LDE5MzYzLDk4NTc1LDI3MDIxLDEzLDIxODI5LDI1LDMyNDEsMTIxMzM4LDQxMDUyLDEzLDMwNzMxLDI1LDU4MSwxMzA5LDMxNiwxMjIyMSwzMTYsNDkzNjYsODg1NSwyNSwzOTIsNDAsMTI5OSw1NjIwMSw0MDUwLDI2MzIsMTgyNSwxODg2MSw1NjIwMSwxMSw4ODksMzM0OSwzODIsMzI0MSwxMjEzMzgsMTMsNDAzNywyNjEsMzk4MSwxMywzMDczMSw0NDY1LDEzLDE3MTU4LDIyMCwxNSwxMywyMCwzMCwzMDcyLDE4MjUsMTYwNiwxODg2MSw1NjIwMSwxMSw4NjAsODYzMywzMjgsMzI0MSwxMjEzMzgsMTMsMjYzMiw2MjUsMTIzMzEsMTMsMzA3MzEsMjIwLDE1LDEzLDIwLDMwLDMwNzIsMTAxMTIsMjIwLDE1LDEzLDE1LDIyMzYsODYwLDU2MjAxLDEzLDYyMywxNTU0MywyNSwzOTIsMzMzNSwyOTAsMjA4NjksMzgyLDE3MTYyLDExLDYwNTkyLDExLDUwMyw3MTM1Nyw0OTUxLDEyMzgsMzE2LDIxNjQ2LDExLDE0OTc1LDI2MSw4NDI5LDMyOCwyMjAsMTUsMTMsMTUsMzI2LDE2NjQ0LDE0MTIsMzgyLDEyNDg2LDM2OTIsMzA3Miw1ODEsNjc5LDQ5NTEsMTIzOCwxMywzMDcyLDQyNzUsNjI1LDEyMzMxLDEzLDI2MzIsNTgxLDY2NSwzNjQ0LDI2MSw0NDY1LDg0MjksMTI5OSwyMjAsMTUsMTMsMjAsMTMsNTE0NDEsMzA1NDcsMjUsMTgyNSwxODg2MSw1NjIwMSwxMSwzMzQ5LDEwODYwLDMyNDEsMTIxMzM4LDEzLDI2MzIsNjI1LDEyMzMxLDEzLDMwNzMxLDIyMCwxNSwxMywyMCwxMyw1MTQ0MSw4MjA1LDEzLDIwMDAwNywyMDAwMDYsMTczNzgxLDIwMDAwNSwxNzE5NiwyMDAwMDgsNzQ1LDIyMCwzOTIsMTMwMDMsMTI0MywzOTIsMjYyMjAsOTg1NzUsMjcwMjEsMTE1MCwyMjAsMzkyLDQ1MDQsMTI0MywzOTIsNDQyMiwxMjEzMzgsNDEwNTIsMTE1MCwyMjAsMzkyLDIxMjAwLDEyNDMsMjIwLDE1LDEzLDIwLDQxMiwyMjAsMzkyLDM4NzA1LDEyNDMsMzkyLDk3Niw1NDMwLDI2NjcxLDQwMiwzMjQxLDEyMTMzOCwxMSwzNzczOSwxMSwzMjYsNDU3LDE5MTgxMywxMSwzMDYyOSwyOTAsMTgyNSw4MDIsMTY5NjksMzU2MjcsMzgyLDU2MjAxLDEzLDMyNzQsMzgyLDg2MCw1NjYzMSw0ODMsMjkwLDE4MjUsODAyLDE2MDkzLDkyMCwxMSwyMDU0NywzMDYsMjYxLDQ0NjUsNjQxOTYsODQyOSwxNDM5Niw5Ml0sInRvdGFsX2R1cmF0aW9uIjo4Mzg4MzQ3NjY3LCJsb2FkX2R1cmF0aW9uIjo3MjYyMzYyNSwicHJvbXB0X2V2YWxfY291bnQiOjMzNiwicHJvbXB0X2V2YWxfZHVyYXRpb24iOjIxMTIzMzk1OCwiZXZhbF9jb3VudCI6MjU2LCJldmFsX2R1cmF0aW9uIjo4MTAzOTgzNzkyfQ==
+  recorded_at: Fri, 10 Oct 2025 11:51:06 GMT
 recorded_with: VCR 6.3.1

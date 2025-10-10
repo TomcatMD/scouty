@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Scouty
-  Config = Data.define(:webcache, :registry, :scrapers, :lm_studio, :notifier, :profile)
+  Config = Data.define(:webcache, :registry, :scrapers, :ollama, :notifier, :profile)
 
   ConfigWebcache = Data.define(:dir)
   ConfigRegistry = Data.define(:file)
   ConfigScrapper = Data.define(:source, :params)
-  ConfigLMStudio = Data.define(:url, :model)
+  ConfigOllama = Data.define(:url, :model)
   ConfigNotifier = Data.define(:hot_score, :telegram, :report, :suppressed)
   ConfigTelegram = Data.define(:token, :chat_id)
 
@@ -22,7 +22,7 @@ module Scouty
         webcache: read_webcache_config(data),
         registry: read_registry_config(data),
         scrapers: read_scrapers_config(data),
-        lm_studio: read_lm_studio_config(data),
+        ollama: read_ollama_config(data),
         notifier: read_notifier_config(data),
         profile: read_profile_config(data)
       )
@@ -51,10 +51,10 @@ module Scouty
       end
     end
 
-    def read_lm_studio_config(data)
-      ConfigLMStudio.new(
-        url: read_config(data, "lm_studio", "url"),
-        model: read_config(data, "lm_studio", "model")
+    def read_ollama_config(data)
+      ConfigOllama.new(
+        url: read_config(data, "ollama", "url"),
+        model: read_config(data, "ollama", "model")
       )
     end
 

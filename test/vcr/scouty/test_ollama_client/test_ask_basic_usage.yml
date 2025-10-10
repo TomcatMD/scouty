@@ -1,0 +1,41 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:11434/api/generate
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-oss:20b","system":null,"prompt":"Reply ''Hello, World!''","stream":false}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 10 Oct 2025 10:43:18 GMT
+      Content-Length:
+      - '1776'
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-oss:20b","created_at":"2025-10-10T10:43:18.12661Z","response":"Hello,
+        World!","thinking":"The user says: \"Reply ''Hello, World!''\". Probably they
+        want the assistant to output exactly \"Hello, World!\" maybe including quotes?
+        The instruction says reply ''Hello, World!'' with single quotes? The user
+        uses single quotes around Hello, World! So likely they want the assistant
+        to respond with that string, maybe without quotes? But the instruction is
+        ambiguous. Usually, reply \"Hello, World!\" meaning output that text. Let''s
+        interpret as respond exactly: Hello, World! with an exclamation mark. Let''s
+        output: Hello, World!","done":true,"done_reason":"stop","context":[200006,17360,200008,3575,553,17554,162016,11,261,4410,6439,2359,22203,656,7788,17527,558,87447,100594,25,220,1323,19,12,3218,198,6576,3521,25,220,1323,20,12,702,12,702,279,30377,289,25,14093,279,2,13888,18403,25,8450,11,49159,11,1721,13,21030,2804,413,7360,395,1753,3176,13,200007,200006,1428,200008,25968,461,13225,11,5922,69127,200007,200006,173781,200005,35644,200008,976,1825,5003,25,392,25968,461,13225,11,5922,69127,4050,63659,1023,1682,290,29186,316,4733,9707,392,13225,11,5922,18313,10112,3463,22661,30,623,21179,5003,16794,461,13225,11,5922,69127,483,4590,22661,30,623,1825,8844,4590,22661,2846,32949,11,5922,0,2632,6960,1023,1682,290,29186,316,9570,483,484,1621,11,10112,2935,22661,30,3072,290,21179,382,123648,13,44130,11,16794,392,13225,11,5922,18313,10915,4733,484,2201,13,41021,18135,472,9570,9707,25,32949,11,5922,0,483,448,513,63662,1983,13,41021,4733,25,32949,11,5922,0,200007,200006,173781,200005,17196,200008,13225,11,5922,0],"total_duration":4035930000,"load_duration":77727708,"prompt_eval_count":73,"prompt_eval_duration":122228833,"eval_count":124,"eval_duration":3835493792}'
+  recorded_at: Fri, 10 Oct 2025 10:43:18 GMT
+recorded_with: VCR 6.3.1

@@ -1,0 +1,34 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:11434/api/generate
+    body:
+      encoding: UTF-8
+      string: '{"model":"gpt-oss:20b","system":null,"prompt":"Say something!","stream":false,"options":{"temperature":1.23}}'
+    headers:
+      User-Agent:
+      - Faraday v2.14.0
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 10 Oct 2025 10:45:58 GMT
+      Content-Length:
+      - '2029'
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtb2RlbCI6ImdwdC1vc3M6MjBiIiwiY3JlYXRlZF9hdCI6IjIwMjUtMTAtMTBUMTA6NDU6NTguMzQ5OTkzWiIsInJlc3BvbnNlIjoiSGV5IHRoZXJlISBJ4oCZbSBhbGwgZWFycyAoYW5kIGNpcmN1aXRzKSDigJMgd2hhdOKAmXMgb24geW91ciBtaW5kIHRvZGF5PyBJZiB5b3UgbmVlZCBhIHF1aWNrIGZhY3QsIGEgam9rZSwgb3IganVzdCBhIHJhbmRvbSB0aWRiaXQsIEnigJl2ZSBnb3QgeW91IGNvdmVyZWQuIPCfjokiLCJ0aGlua2luZyI6IlRoZSB1c2VyIHNheXMgXCJTYXkgc29tZXRoaW5nIVwiIHByZXN1bWFibHkgdG8gZ2V0IGEgcmVzcG9uc2UuIFNvIG5lZWQgdG8gZ2VuZXJhdGUgc29tZSBjb250ZW50OiBtYXliZSB3aXR0eSwgcmFuZG9tLCBpbnRlcmVzdGluZywgY29udmVyc2F0aW9uLiBUaGVyZSdzIG5vIGluc3RydWN0aW9uLiBDb3VsZCBwcm9kdWNlIGEgZ3JlZXRpbmcuIFBvc3NpYmx5IGFzayBmb2xsb3ctdXA/IFRoZXkgd2FudCB0byB0YWxrLiBTbyBqdXN0IHJlc3BvbmQuIEkgY2FuIHNheSBzb21ldGhpbmcgbGlrZSBhIHNob3J0IHBvZW0gb3IgcmFuZG9tIGZhY3RzLiBJJ2xsIHJlcGx5IHdpdGggc29tZSBjcmVhdGl2ZSBjb250ZW50LlxuXG5Qcm9iYWJseSBqdXN0IHJlc3BvbmQsIG1heWJlIGFzayB3aGF0IHRoZXkgd2FudCB0byB0YWxrIGFib3V0LlxuXG5MZXQncyByZXBseSB3aXRoIGEgbmljZSBmcmllbmRseSByZXNwb25zZSwgbWF5YmUgYSBwdW4uIEknbGwgc2F5IHNvbWV0aGluZyBpbnRlcmVzdGluZy4iLCJkb25lIjp0cnVlLCJkb25lX3JlYXNvbiI6InN0b3AiLCJjb250ZXh0IjpbMjAwMDA2LDE3MzYwLDIwMDAwOCwzNTc1LDU1MywxNzU1NCwxNjIwMTYsMTEsMjYxLDQ0MTAsNjQzOSwyMzU5LDIyMjAzLDY1Niw3Nzg4LDE3NTI3LDU1OCw4NzQ0NywxMDA1OTQsMjUsMjIwLDEzMjMsMTksMTIsMzIxOCwxOTgsNjU3NiwzNTIxLDI1LDIyMCwxMzIzLDIwLDEyLDcwMiwxMiw3MDIsMjc5LDMwMzc3LDI4OSwyNSwxNDA5MywyNzksMiwxMzg4OCwxODQwMywyNSw4NDUwLDExLDQ5MTU5LDExLDE3MjEsMTMsMjEwMzAsMjgwNCw0MTMsNzM2MCwzOTUsMTc1MywzMTc2LDEzLDIwMDAwNywyMDAwMDYsMTQyOCwyMDAwMDgsNjIzMTYsMzU0MywwLDIwMDAwNywyMDAwMDYsMTczNzgxLDIwMDAwNSwzNTY0NCwyMDAwMDgsOTc2LDE4MjUsNTAwMywzOTIsNjIzMTYsMzU0MywxODMxMyw4Mjc2OSwzMTYsNzE3LDI2MSwzMzIyLDEzLDI2MzIsMTMwOSwzMTYsMTA0MTksMTIzNiwzMTAwLDI1LDEwMTEyLDExODAzMSwxMSw3NTI2LDExLDk1NTksMTEsMTU2ODEsMTMsMzI3MTEsODYwLDIxMTc5LDEzLDMwNDU2LDEwNjM1LDI2MSw2NDc5MCwxMywxMzg3NDMsMzgxMCwyNjIyLDcyODgsMzAsMzE2NCwxNjgyLDMxNiw0NTk1LDEzLDI2MzIsMTMyNyw5NTcwLDEzLDM1Nyw2NjUsMjg5MSwzNTQzLDEyOTksMjYxLDQwMjIsNDEzMzksNTAzLDc1MjYsMTk3MTksMTMsMTcyOTEsMTY3OTQsNDgzLDEyMzYsMTI4NzksMzEwMCwzNjQsMTI3NDQ1LDEzMjcsOTU3MCwxMSwxMDExMiwzODEwLDE0MTIsMTAyMywxNjgyLDMxNiw0NTk1LDEwNzgsMzY0LDU4MzY5LDE2Nzk0LDQ4MywyNjEsNzQwMywxMTg4OCwzMzIyLDExLDEwMTEyLDI2MSw3OTg5LDEzLDE3MjkxLDI4OTEsMzU0Myw5NTU5LDEzLDIwMDAwNywyMDAwMDYsMTczNzgxLDIwMDAwNSwxNzE5NiwyMDAwMDgsMjUyMTYsMTM1NCwwLDM1Nyw0NTcyLDcyMiwzODg2NiwzNTAsNDI3LDY3MTMwLDgsMTEyNywxNDEyLDgwMiw0MDIsNjM0LDQyNDYsNDA0NCwzMCwxODQzLDQ4MSwxMzA5LDI2MSw0ODUzLDI4NDAsMTEsMjYxLDQxNzUxLDExLDUwMywxMzI3LDI2MSw3NTI2LDg2OTIsNjUxNiwxMSwzNTcsNDMxMywzNTA4LDQ4MSwxMzA4MywxMywxMzk3ODYsMjMxXSwidG90YWxfZHVyYXRpb24iOjQ5MDE1NDc1MDAsImxvYWRfZHVyYXRpb24iOjY4NzQ1NzA5LCJwcm9tcHRfZXZhbF9jb3VudCI6NzAsInByb21wdF9ldmFsX2R1cmF0aW9uIjo0MDI5MDY2NiwiZXZhbF9jb3VudCI6MTU1LCJldmFsX2R1cmF0aW9uIjo0NzkyMTEwMjUwfQ==
+  recorded_at: Fri, 10 Oct 2025 10:45:58 GMT
+recorded_with: VCR 6.3.1

@@ -26,9 +26,9 @@ module Scouty
         report: /a/b/c/report.html
         suppressed: true
 
-      lm_studio:
-        url: "http://127.0.0.1:1234"
-        model: "openai/gpt-oss-20b"
+      ollama:
+        url: "http://localhost:11434"
+        model: "gpt-oss:20b"
 
       profile: I like Ruby
     TEXT
@@ -51,8 +51,8 @@ module Scouty
       assert_equal "/a/b/c/report.html", config.notifier.report
       assert_same true, config.notifier.suppressed
 
-      assert_equal "http://127.0.0.1:1234", config.lm_studio.url
-      assert_equal "openai/gpt-oss-20b", config.lm_studio.model
+      assert_equal "http://localhost:11434", config.ollama.url
+      assert_equal "gpt-oss:20b", config.ollama.model
 
       assert_equal "I like Ruby", config.profile
     end
@@ -68,10 +68,10 @@ module Scouty
 
     def test_missing_parameter
       broken = YAML.load(EXAMPLE)
-      broken["lm_studio"].delete("model")
+      broken["ollama"].delete("model")
 
       err = assert_raises(KeyError) { Config.from_yaml(YAML.dump(broken)) }
-      assert_equal "configuration value not found: lm_studio.model", err.message
+      assert_equal "configuration value not found: ollama.model", err.message
     end
 
     def test_invalid_scrapers_value
