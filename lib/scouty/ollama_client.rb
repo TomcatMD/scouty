@@ -29,6 +29,7 @@ module Scouty
         builder.request  :json
         builder.response :json
         builder.response :raise_error
+        builder.options.timeout = 180
       end
     end
 
