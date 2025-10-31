@@ -14,7 +14,7 @@
 
 ### 1. Prerequisites
 
-Ruby **3.4.5+** (install via [asdf](https://asdf-vm.com); a `.tool-versions` file is included)
+Ruby **3.4.7+** (install via [asdf](https://asdf-vm.com); a `.tool-versions` file is included)
 
 ### 2. Install Dependencies
 
