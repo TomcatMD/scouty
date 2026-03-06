@@ -35,9 +35,11 @@ module Scouty
           client.ask("Say something!", temperature: 1.23)
         end
 
-      assert_equal "Hey there! I’m all ears (and circuits) – what’s on your " \
-                   "mind today? If you need a quick fact, a joke, or just a " \
-                   "random tidbit, I’ve got you covered. 🎉",
+      assert_equal "Did you know that the average person walks about 100,000 " \
+                   "miles in their lifetime—roughly two and a half times " \
+                   "around the world? 🚶‍♂️🌍 Every step tells a story, even the " \
+                   "ones we barely notice. How would you rewrite your own " \
+                   "\"walking story\" if you could choose the destination?",
                    reply
     end
   end

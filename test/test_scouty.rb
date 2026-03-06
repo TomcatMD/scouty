@@ -73,11 +73,12 @@ class TestScouty < Minitest::Test
 
     assert_equal "TechNova Solutions", review_a.company
     assert_equal "Ruby Developer", review_a.position
-    assert_in_delta(4.5, review_a.score)
+    assert_in_delta(3, review_a.score)
     assert_equal <<~TEXT.split.join(" "), review_a.notes
-      The posting is a Ruby Developer role, directly matching the user’s stated
-      interest in Ruby. It also mentions Rails and SQL, which are common in Ruby
-      development, making it highly relevant.
+      The posting is a Ruby-focused role, which aligns with the user’s stated
+      interest in Ruby. However, the user’s profile lacks additional details
+      (e.g., experience level, preferred frameworks, or other skills), so the
+      match is moderate.
     TEXT
 
     assert_equal "TechNova Solutions", review_b.company
@@ -85,8 +86,8 @@ class TestScouty < Minitest::Test
     assert_in_delta 0.5, review_b.score
     assert_equal <<~TEXT.split.join(" "), review_b.notes
       The role focuses on Elixir, Phoenix, and Ecto, whereas the user’s stated
-      preference is Ruby. There is no overlap with the user’s skill set,
-      resulting in a low relevance score.
+      preference is Ruby. No overlap in technology stack, so relevance is
+      minimal.
     TEXT
   end
 

@@ -8,7 +8,7 @@ http_interactions:
       string: '{"model":"gpt-oss:20b","system":"Reply with ''Hello, <PROVIDED NAME>!''","prompt":"Alex","stream":false}'
     headers:
       User-Agent:
-      - Faraday v2.14.0
+      - Faraday v2.14.1
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -23,13 +23,16 @@ http_interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 10 Oct 2025 10:43:14 GMT
+      - Fri, 06 Mar 2026 11:29:44 GMT
       Content-Length:
-      - '1060'
+      - '1508'
     body:
       encoding: UTF-8
-      string: '{"model":"gpt-oss:20b","created_at":"2025-10-10T10:43:14.085981Z","response":"Hello,
-        Alex!","thinking":"The user says \"Alex\". According to developer instructions,
-        we should reply with \"Hello, Alex!\" with the name. Just that.","done":true,"done_reason":"stop","context":[200006,17360,200008,3575,553,17554,162016,11,261,4410,6439,2359,22203,656,7788,17527,558,87447,100594,25,220,1323,19,12,3218,198,6576,3521,25,220,1323,20,12,702,12,702,279,30377,289,25,14093,279,2,13888,18403,25,8450,11,49159,11,1721,13,21030,2804,413,7360,395,1753,3176,13,200007,200006,77944,200008,279,2,68406,279,25968,483,461,13225,11,464,15513,18434,2252,40186,29,69127,200007,200006,1428,200008,37201,200007,200006,173781,200005,35644,200008,976,1825,5003,392,37201,4050,16344,316,24261,15543,11,581,1757,16794,483,392,13225,11,12734,18313,483,290,1308,13,6214,484,13,200007,200006,173781,200005,17196,200008,13225,11,12734,0],"total_duration":1497320375,"load_duration":68115416,"prompt_eval_count":88,"prompt_eval_duration":183922333,"eval_count":41,"eval_duration":1244912125}'
-  recorded_at: Fri, 10 Oct 2025 10:43:14 GMT
-recorded_with: VCR 6.3.1
+      string: '{"model":"gpt-oss:20b","created_at":"2026-03-06T11:29:44.03348Z","response":"Hello,
+        Alex!","thinking":"We have a conversation:\n\nSystem: ChatGPT etc.\nDeveloper
+        says: \"Reply with ''Hello, \u003cPROVIDED NAME\u003e!''\" So the user provided
+        name Alex. So we should reply \"Hello, Alex!\". This is the required output.\n\nWe
+        should ensure to match exactly: \"Hello, Alex!\" (capital H, comma, space,
+        Alex, exclamation). That is it.","done":true,"done_reason":"stop","context":[200006,17360,200008,3575,553,17554,162016,11,261,4410,6439,2359,22203,656,7788,17527,558,87447,100594,25,220,1323,19,12,3218,198,6576,3521,25,220,1323,21,12,3659,12,3218,279,30377,289,25,14093,279,2,13888,18403,25,8450,11,49159,11,1721,13,21030,2804,413,7360,395,1753,3176,13,200007,200006,77944,200008,279,2,68406,279,25968,483,461,13225,11,464,15513,18434,2252,40186,29,69127,200007,200006,1428,200008,37201,200007,200006,173781,200005,35644,200008,2167,679,261,15681,1402,3320,25,17554,162016,5178,558,73175,5003,25,392,25968,483,461,13225,11,464,15513,18434,2252,40186,29,0,27386,2632,290,1825,5181,1308,12734,13,2632,581,1757,16794,392,13225,11,12734,157665,1328,382,290,3759,4733,364,2167,1757,6757,316,3981,9707,25,392,13225,11,12734,18313,350,128780,487,11,64235,11,4918,11,12734,11,513,63662,741,4569,382,480,13,200007,200006,173781,200005,17196,200008,13225,11,12734,0],"total_duration":3304604291,"load_duration":152531041,"prompt_eval_count":88,"prompt_eval_duration":225716417,"eval_count":93,"eval_duration":2838143539}'
+  recorded_at: Fri, 06 Mar 2026 11:29:44 GMT
+recorded_with: VCR 6.4.0

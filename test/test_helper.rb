@@ -11,6 +11,7 @@ $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 require "scouty"
 
 require "minitest/autorun"
+require "minitest/mock"
 require "minitest/pride"
 require "mocha/minitest"
 require "vcr"

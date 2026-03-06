@@ -71,7 +71,6 @@ This project is licensed under the [MIT License](./LICENSE). Feel free to use, m
 
 ## 💡 Tips
 
-- Ensure LM Studio is running while using Scouty to process job postings.
 - The analysis process may take some time, depending on the number of job postings and system resources.
 - Run `bin/scouty --help` to view available parameters for running.
 - Check `data/jobs.db` regularly to review new job matches and clear old data if needed.

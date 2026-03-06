@@ -2,24 +2,25 @@
 
 source "https://rubygems.org"
 
-gem "erb", "~> 5.0", ">= 5.0.2"
-gem "faraday", "~> 2.13", ">= 2.13.4"
+gem "erb", "~> 6.0", ">= 6.0.2"
+gem "faraday", "~> 2.14", ">= 2.14.1"
 gem "ferrum", "~> 0.17.1"
-gem "irb"
-gem "minitest", "~> 5.16"
-gem "rake", "~> 13.0"
-gem "retriable", "~> 3.1", ">= 3.1.2"
-gem "reverse_markdown", "~> 3.0"
-gem "sqlite3", "~> 2.7", ">= 2.7.3"
-gem "telegram-bot-ruby", "~> 2.4"
+gem "irb", "~> 1.17"
+gem "rake", "~> 13.3", ">= 13.3.1"
+gem "retriable", "~> 3.2", ">= 3.2.1"
+gem "reverse_markdown", "~> 3.0", ">= 3.0.2"
+gem "sqlite3", "~> 2.9", ">= 2.9.1"
+gem "telegram-bot-ruby", "~> 2.5"
 
 group :test do
-  gem "mocha", "~> 2.7", ">= 2.7.1"
-  gem "vcr", "~> 6.3", ">= 6.3.1"
-  gem "webmock", "~> 3.25", ">= 3.25.1"
+  gem "minitest", "~> 6.0", ">= 6.0.2"
+  gem "minitest-mock", "~> 5.27"
+  gem "mocha", "~> 3.0", ">= 3.0.2"
+  gem "vcr", "~> 6.4"
+  gem "webmock", "~> 3.26", ">= 3.26.1"
 
-  gem "rubocop", "~> 1.21", require: false
-  gem "rubocop-minitest", "~> 0.38.2", require: false
+  gem "rubocop", "~> 1.85", ">= 1.85.1", require: false
+  gem "rubocop-minitest", "~> 0.39.1", require: false
   gem "rubocop-rake", "~> 0.7.1", require: false
   gem "simplecov", "~> 0.22.0", require: false
 end
